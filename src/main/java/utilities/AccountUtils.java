@@ -11,27 +11,24 @@ import java.io.IOException;
 
 
 @Log4j2
-public class LoginUtils {
+public class AccountUtils {
 
     static JSONParser parser = new JSONParser();
     static Object obj;
 
     static {
         try {
-            obj = parser.parse(new FileReader("src/main/resources/credentials.json"));
+            obj = parser.parse(new FileReader("src/main/resources/testAccount.json"));
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
         }
     }
 
-    @Step("Get Login from local Credentials storage")
-    public static String getLogin() {
-        return ((JSONObject) obj).get("login").toString();
-    }
+    static JSONObject jsonObj = (JSONObject) obj;
 
-    @Step("Get Password from local Credentials storage")
-    public static String getPassword(){
-        return ((JSONObject) obj).get("password").toString();
+    @Step("Get {string} attribute from Account JSON")
+    public static String getAttribute(String attribute){
+        return jsonObj.get("attribute").toString();
     }
 
 }
