@@ -22,7 +22,7 @@ public class AccountsPage extends CreateNewAccountPage{
         newAccountButton.click();
     }
 
-    @Step("Click New Account button")
+    @Step("Open Account")
     public void openAccount(String accountLabel){
         log.info("Opening account: " + accountLabel);
         SelenideElement account = $x(String.format("//a[@title='%s']",accountLabel));
