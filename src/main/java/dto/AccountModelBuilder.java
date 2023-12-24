@@ -39,6 +39,7 @@ public class AccountModelBuilder {
                 .upsell(AccountUtils.getAttribute("upsell"))
                 .isActive(AccountUtils.getAttribute("isActive"))
                 .description(AccountUtils.getAttribute("description"))
+                .ownership(AccountUtils.getAttribute("ownership"))
                 .build();
     }
 

@@ -46,4 +46,5 @@ public class AccountModel {
     private String isActive;
 
     private String description;
+    private String ownership;
 }

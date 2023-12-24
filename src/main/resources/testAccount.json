@@ -8,4 +8,5 @@
   "shippingStreet":"Kolotushkin","shippingZipCode":"666888",
   "shippingCity":"Vilnius","shippingState":"Vilnius","shippingCountry":"Lithuania",
 "description":"TestDescription","priority":"High","sla":"Gold","slaExpiration":"2024-12-30",
-"slaNumber":"888","numberLocations":"3","upsell":"Maybe","isActive":"Yes"}
+"slaNumber":"888","numberLocations":"3","upsell":"Maybe","isActive":"Yes",
+"ownership":"Public"}

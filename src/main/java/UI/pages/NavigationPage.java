@@ -8,11 +8,11 @@ import static com.codeborne.selenide.Selenide.*;
 @Log4j2
 public class NavigationPage {
 
-    protected SelenideElement servicesMenuButton = $x("//button[@class='slds-button slds-show']");
-    protected SelenideElement serviceButton = $x("//a[@data-label='Service']");
-    protected SelenideElement accountsTab = $x("//a[@title='Accounts']");
-    protected SelenideElement contactsTab = $x("//a[@title='Contacts']");
-    protected SelenideElement casesTab = $x("//a[@title='Cases']");
+    protected SelenideElement servicesMenuButton = $x("//button[contains(@class,'salesforceIdentityAppLauncherHeader')]");
+    protected SelenideElement serviceButton = $x("//a[@data-label='Service']/parent::*");
+    protected SelenideElement accountsTab = $x("//a[@title='Accounts']/parent::*");
+    protected SelenideElement contactsTab = $x("//a[@title='Contacts']/parent::*");
+    protected SelenideElement casesTab = $x("//a[@title='Cases']/parent::*");
 
     public void clickServicesMenuButton(){
         log.debug("Pressing Services Menu Button");

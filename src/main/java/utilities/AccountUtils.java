@@ -28,7 +28,7 @@ public class AccountUtils {
 
     @Step("Get {string} attribute from Account JSON")
     public static String getAttribute(String attribute){
-        return jsonObj.get("attribute").toString();
+        return jsonObj.get(attribute).toString();
     }
 
 }

@@ -7,7 +7,7 @@ import lombok.extern.log4j.Log4j2;
 import static com.codeborne.selenide.Selenide.*;
 
 @Log4j2
-public class AccountsPage {
+public class AccountsPage extends CreateNewAccountPage{
 
     SelenideElement newAccountButton = $x("//div[@title='New']/parent::a");
     SelenideElement editButton = $x("//a[@title='Edit']");

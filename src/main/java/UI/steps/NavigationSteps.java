@@ -6,4 +6,8 @@ public class NavigationSteps extends BaseSteps {
         navigationPage.clickServicesMenuButton();
         navigationPage.clickServiceButton();
     }
+
+    public void switchToAccountsTab(){
+        navigationPage.switchToAccountsTab();
+    }
 }
