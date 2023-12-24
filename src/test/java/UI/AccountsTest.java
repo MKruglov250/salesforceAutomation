@@ -1,5 +1,6 @@
 package UI;
 
+import com.codeborne.selenide.Selenide;
 import dto.AccountModel;
 import dto.AccountModelBuilder;
 import lombok.extern.log4j.Log4j2;
@@ -70,7 +71,8 @@ public class AccountsTest extends BaseTest {
     public void checkDeleteCompleteAccount(){
         log.info("Test: delete complete account");
         accountPageSteps.deleteExistingAccount(completeAccount);
-        Assert.assertTrue(accountPageSteps.checkAccountExists(completeAccount));
+        Selenide.refresh();
+        Assert.assertFalse(accountPageSteps.checkAccountExists(completeAccount));
     }
 
     @Test(description = "Check Delete Edited Account", groups = "Regression",
@@ -78,7 +80,8 @@ public class AccountsTest extends BaseTest {
     public void checkDeleteEditedAccount(){
         log.info("Test: delete edited account");
         accountPageSteps.deleteExistingAccount(editedAccount);
-        Assert.assertTrue(accountPageSteps.checkAccountExists(editedAccount));
+        Selenide.refresh();
+        Assert.assertFalse(accountPageSteps.checkAccountExists(editedAccount));
     }
 
     @AfterMethod

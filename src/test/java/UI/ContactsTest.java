@@ -1,5 +1,6 @@
 package UI;
 
+import com.codeborne.selenide.Selenide;
 import dto.ContactModel;
 import dto.ContactModelBuilder;
 import lombok.extern.log4j.Log4j2;
@@ -33,7 +34,7 @@ public class ContactsTest extends BaseTest{
         log.info("Test: create contact with all data fields");
         contactPageSteps.createCompleteContact(completeContact);
 
-        Assert.assertTrue(accountPageSteps.checkAccountTitleExists());
+        Assert.assertTrue(contactPageSteps.checkContactTitleExists());
     }
 
     @Test(description = "Check Read Created Contact", groups = "Smoke")
@@ -74,8 +75,9 @@ public class ContactsTest extends BaseTest{
     public void checkDeleteCompleteContact(){
         log.info("Test: delete complete contact");
         contactPageSteps.deleteExistingContact(completeContact);
+        Selenide.refresh();
 
-        Assert.assertTrue(contactPageSteps.checkContactExists(completeContact));
+        Assert.assertFalse(contactPageSteps.checkContactExists(completeContact));
     }
 
     @Test(description = "Check Delete Edited Contact", groups = "Regression",
@@ -83,8 +85,9 @@ public class ContactsTest extends BaseTest{
     public void checkDeleteEditedContact(){
         log.info("Test: delete edited Contact");
         contactPageSteps.deleteExistingContact(editedContact);
+        Selenide.refresh();
 
-        Assert.assertTrue(contactPageSteps.checkContactExists(editedContact));
+        Assert.assertFalse(contactPageSteps.checkContactExists(editedContact));
     }
 
 }

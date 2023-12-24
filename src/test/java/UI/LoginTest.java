@@ -23,7 +23,7 @@ public class LoginTest extends BaseTest{
         loginPageSteps.logout();
     }
 
-    @Test(description = "Login with valid credentials", groups = "Smoke")
+    @Test(description = "Login with incorrect credentials", groups = "Smoke")
     public void testLoginBadUser(){
         log.info("Testing login with Invalid credentials");
         loginPageSteps.loginToSite(badUser);
