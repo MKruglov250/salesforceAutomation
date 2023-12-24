@@ -35,6 +35,14 @@ public class Input extends BaseWrapper {
     }
 
     public void edit (String text){
+        log.info("Edit: set info for {}: {} ", label, text);
+        if (label.equals("Last Name")) {
+            $x(String.format("//label[text()='%s']/ancestor::div[contains(@class, 'slds-grid')]" +
+                    "//input[@name='lastName']", label))
+                    .scrollIntoView(true)
+                    .setValue(text);
+            return;
+        }
         $x(String.format("//label[text()='%s']/ancestor::div[contains(@class, 'slds-grid')]//input", label))
                 .scrollIntoView(true)
                 .setValue(text);

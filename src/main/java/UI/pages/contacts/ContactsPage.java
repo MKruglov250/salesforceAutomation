@@ -4,7 +4,6 @@ import com.codeborne.selenide.SelenideElement;
 import dto.ContactModel;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
-import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.*;
@@ -27,11 +26,6 @@ public class ContactsPage {
     public void openContact(String contactLabel){
         log.info("Opening contact: " + contactLabel);
         SelenideElement contact = $x(String.format("//a[@title='%s']",contactLabel));
-        $x("//td").sendKeys(Keys.PAGE_DOWN);
-        $x("//td").sendKeys(Keys.PAGE_DOWN);
-        $x("//td").sendKeys(Keys.PAGE_DOWN);
-        $x("//td").sendKeys(Keys.PAGE_DOWN);
-        $x("//td").sendKeys(Keys.PAGE_DOWN);
         contact.scrollTo();
         contact.should(exist);
         contact.click();
@@ -45,19 +39,23 @@ public class ContactsPage {
         return contactExists;
     }
 
+    @Step("Click Actions Button")
+    public void clickActionsButton(ContactModel contact){
+        $x(String.format("//a[@title='%s']/ancestor::tr//button[@aria-expanded='false']",
+                contact.getFirstName() + " " + contact.getLastName())).click();
+    }
+
     @Step("Click Edit button")
     public void clickEditButton(ContactModel contact){
         log.info("Clicking Edit button for contact: " + contact.getAccountName());
-        $x(String.format("//a[text()='%s']/ancestor::tr//a[@role='button']/ancestor::span",
-                contact.getFirstName() + " " + contact.getLastName())).click();
+        clickActionsButton(contact);
         editButton.click();
     }
 
     @Step("Click Delete button")
     public void clickDeleteButton(ContactModel contact){
         log.info("Clicking Delete button for contact: " + contact.getAccountName());
-        $x(String.format("//a[text()='%s']/ancestor::tr//a[@role='button']/ancestor::span",
-                contact.getFirstName() + " " + contact.getLastName())).click();
+        clickActionsButton(contact);
         deleteButton.click();
     }
 

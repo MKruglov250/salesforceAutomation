@@ -44,4 +44,47 @@ public class ContactsTest extends BaseTest{
         contactPageSteps.checkContactFields(completeContact);
     }
 
+    @Test(description = "Check Creation of empty contact has errors", groups = "Regression")
+    public void checkEmptyContactCreation(){
+        log.info("Test: create contact with no data, check errors appear");
+        contactPageSteps.createEmptyContact();
+
+        contactPageSteps.checkErrorMessages();
+
+        contactPageSteps.closeCreateContactWindow();
+    }
+
+    @Test(description = "Check Create Account with only essential fields", groups = "Smoke")
+    public void checkCreateEssentialAccount(){
+        log.info("Test: create account with only essential fields");
+        contactPageSteps.createEssentialContact(essentialContact);
+
+        contactPageSteps.checkShortFullname(essentialContact);
+    }
+
+    @Test(description = "Check Edit Contact", groups = "Regression", priority = 1)
+    public void checkEditContact(){
+        log.info("Test: edit existing contact first and last name");
+        contactPageSteps.editExistingContact(essentialContact, editedContact);
+        Assert.assertTrue(contactPageSteps.checkContactExists(editedContact));
+    }
+
+    @Test(description = "Check Delete Complete Contact", groups = "Regression",
+            priority = 2)
+    public void checkDeleteCompleteContact(){
+        log.info("Test: delete complete contact");
+        contactPageSteps.deleteExistingContact(completeContact);
+
+        Assert.assertTrue(contactPageSteps.checkContactExists(completeContact));
+    }
+
+    @Test(description = "Check Delete Edited Contact", groups = "Regression",
+            priority = 2)
+    public void checkDeleteEditedContact(){
+        log.info("Test: delete edited Contact");
+        contactPageSteps.deleteExistingContact(editedContact);
+
+        Assert.assertTrue(contactPageSteps.checkContactExists(editedContact));
+    }
+
 }

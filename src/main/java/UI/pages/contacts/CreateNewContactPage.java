@@ -25,7 +25,8 @@ public class CreateNewContactPage {
     public void enterNecessaryData(ContactModel contactModel){
         contactInfo.shouldBe(visible);
         log.info("Entering model data to obligatory fields");
-        new Input("Last Name").write(contactModel.getAccountName());
+        new Input("Last Name").write(contactModel.getLastName());
+        new Input("First Name").write(contactModel.getFirstName());
     }
 
     @Step("Enter full Contact Data from Model")

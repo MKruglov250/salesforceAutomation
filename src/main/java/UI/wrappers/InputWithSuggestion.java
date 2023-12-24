@@ -17,6 +17,8 @@ public class InputWithSuggestion extends BaseWrapper{
         $x(String.format("//label[text()='%s']/ancestor::div[contains(@class, 'slds-grid')]//input", label))
                 .scrollIntoView(true)
                 .sendKeys(text);
+        $x(String.format("//label[text()='%s']/ancestor::div[contains(@class, 'slds-grid')]//input", label))
+                .click();
         $x(String.format("//lightning-base-combobox-formatted-text[@title='%s']", text))
                 .scrollIntoView(true)
                 .shouldBe(visible)

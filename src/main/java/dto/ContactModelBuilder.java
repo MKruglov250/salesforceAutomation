@@ -1,7 +1,6 @@
 package dto;
 
 import com.github.javafaker.Faker;
-import utilities.AccountUtils;
 import utilities.ContactUtils;
 
 public class ContactModelBuilder {
@@ -47,12 +46,14 @@ public class ContactModelBuilder {
 
         return new ContactModel.ContactModelBuilder()
                 .lastName(faker.name().lastName())
+                .firstName(faker.name().firstName())
                 .build();
     }
 
     public static ContactModel getEditedContact(){
         return new ContactModel.ContactModelBuilder()
-                .accountName("Edited Contact")
+                .lastName("Edited")
+                .firstName("Contact")
                 .build();
     }
 }

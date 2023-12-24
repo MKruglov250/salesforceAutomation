@@ -81,6 +81,14 @@ public class ContactPageSteps {
         Assert.assertEquals(singleContactPage.getContactFullName(),fullname);
     }
 
+    @Step("Check Title Field")
+    public void checkShortFullname(ContactModel contact){
+        String fullname = String.format("%s %s",
+                contact.getFirstName(), contact.getLastName());
+        log.info("Checking Fullname field for contact: " + fullname);
+        Assert.assertEquals(singleContactPage.getContactFullName(),fullname);
+    }
+
     @Step("Check Contact Creation Error Artifacts")
     public void checkErrorMessages(){
         log.info("Checking that Error Icon and Error Message exist");
@@ -95,17 +103,18 @@ public class ContactPageSteps {
     }
 
     @Step("Edit existing account")
-    public void editExistingContact(ContactModel contact, String newName){
-        String fullname = String.format("%s %s %s", contact.getSalutation(), contact.getFirstName(),
-                contact.getLastName());
+    public void editExistingContact(ContactModel baseContact, ContactModel editedContact){
+        String fullname = String.format("%s %s", baseContact.getFirstName(),
+                baseContact.getLastName());
         log.info("Editing Account: " + fullname);
-        contactsPage.clickEditButton(contact);
-        new Input("Account Name").edit(newName);
+        contactsPage.clickEditButton(baseContact);
+        new Input("First Name").edit(editedContact.getFirstName());
+        new Input("Last Name").edit(editedContact.getLastName());
         createNewContactPage.clickSaveButton();
     }
 
     @Step("Delete existing account")
-    public void deleteExistingAccount(ContactModel contact){
+    public void deleteExistingContact(ContactModel contact){
         String fullname = String.format("%s %s %s", contact.getSalutation(), contact.getFirstName(),
                 contact.getLastName());
         log.info("Deleting Account: " + fullname);
