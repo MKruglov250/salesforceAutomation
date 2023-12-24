@@ -5,8 +5,6 @@ import UI.steps.LoginPageSteps;
 import UI.steps.NavigationSteps;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import dto.AccountModel;
-import dto.AccountModelBuilder;
 import dto.UserModel;
 import dto.UserModelBuilder;
 import io.qameta.allure.Attachment;
@@ -31,7 +29,7 @@ public class BaseTest {
 
     UserModel validUser = UserModelBuilder.getValidUser();
     UserModel badUser = UserModelBuilder.getIncorrectUser();
-    AccountModel accountModel = AccountModelBuilder.getFullAccount();
+
 
     LoginPageSteps loginPageSteps = new LoginPageSteps();
     NavigationSteps navigationSteps = new NavigationSteps();

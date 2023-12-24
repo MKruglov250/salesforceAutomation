@@ -44,11 +44,17 @@ public class AccountModelBuilder {
     }
 
 
-    public static AccountModel getNecessaryAccount(){
+    public static AccountModel getEssentialAccount(){
         Faker faker = new Faker();
 
         return new AccountModel.AccountModelBuilder()
                 .accountName(faker.funnyName().name())
+                .build();
+    }
+
+    public static AccountModel getEditedAccount(){
+        return new AccountModel.AccountModelBuilder()
+                .accountName("Edited Account")
                 .build();
     }
 }

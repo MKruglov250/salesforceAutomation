@@ -33,4 +33,10 @@ public class Input extends BaseWrapper {
                 .scrollIntoView(true)
                 .sendKeys(text);
     }
+
+    public void edit (String text){
+        $x(String.format("//label[text()='%s']/ancestor::div[contains(@class, 'slds-grid')]//input", label))
+                .scrollIntoView(true)
+                .setValue(text);
+    }
 }

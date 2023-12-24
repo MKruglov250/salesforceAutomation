@@ -15,6 +15,7 @@ import static com.codeborne.selenide.Selenide.$x;
 public class CreateNewAccountPage extends SingleAccountPage {
 
     SelenideElement saveButton = $x("//button[@name='SaveEdit']");
+    SelenideElement cancelButton = $x("//button[text()='Cancel']");
     SelenideElement errorMessage = $x("//h2[text()='We hit a snag.']");
     SelenideElement errorIcon = $x("//button[@id='window']");
     SelenideElement accountInfo = $x("//span[text()='Account Information']");
@@ -73,6 +74,12 @@ public class CreateNewAccountPage extends SingleAccountPage {
     public void clickSaveButton(){
         log.info("Clicking Save button");
         saveButton.click();
+    }
+
+    @Step("Click Cancel button")
+    public void clickCancelButton(){
+        log.info("Clicking Cancel button");
+        cancelButton.click();
     }
 
     @Step("Check obligatory field Error Message exists")
