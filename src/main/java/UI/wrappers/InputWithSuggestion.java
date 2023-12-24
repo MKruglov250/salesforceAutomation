@@ -1,8 +1,7 @@
 package UI.wrappers;
 
-import com.codeborne.selenide.SelenideElement;
 import lombok.extern.log4j.Log4j2;
-import org.openqa.selenium.Keys;
+import static com.codeborne.selenide.Condition.visible;
 
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -15,11 +14,12 @@ public class InputWithSuggestion extends BaseWrapper{
 
     public void inputSuggestion(String text) {
         log.info("Set info for {}: {}", label, text);
-        SelenideElement inputSug = $x(String.format("//label[text()='%s']/ancestor::div[contains(@class, 'slds-grid')]//input", label));
-        inputSug.scrollIntoView(true).sendKeys(text);
-        inputSug.click();
-        inputSug.sendKeys(Keys.DOWN);
-        inputSug.sendKeys(Keys.DOWN);
-        inputSug.sendKeys(Keys.RETURN);
+        $x(String.format("//label[text()='%s']/ancestor::div[contains(@class, 'slds-grid')]//input", label))
+                .scrollIntoView(true)
+                .sendKeys(text);
+        $x(String.format("//lightning-base-combobox-formatted-text[@title='%s']", text))
+                .scrollIntoView(true)
+                .shouldBe(visible)
+                .click();
     }
 }

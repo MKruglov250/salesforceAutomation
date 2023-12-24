@@ -1,6 +1,7 @@
 package UI;
 
 import UI.steps.AccountPageSteps;
+import UI.steps.ContactPageSteps;
 import UI.steps.LoginPageSteps;
 import UI.steps.NavigationSteps;
 import com.codeborne.selenide.Configuration;
@@ -30,10 +31,10 @@ public class BaseTest {
     UserModel validUser = UserModelBuilder.getValidUser();
     UserModel badUser = UserModelBuilder.getIncorrectUser();
 
-
     LoginPageSteps loginPageSteps = new LoginPageSteps();
     NavigationSteps navigationSteps = new NavigationSteps();
     AccountPageSteps accountPageSteps = new AccountPageSteps();
+    ContactPageSteps contactPageSteps = new ContactPageSteps();
 
     @Attachment
     @Step("Attach Properties to report")

@@ -2,6 +2,7 @@ package UI.pages.contacts;
 
 import UI.wrappers.Dropdown;
 import UI.wrappers.Input;
+import UI.wrappers.InputWithSuggestion;
 import com.codeborne.selenide.SelenideElement;
 import dto.ContactModel;
 import io.qameta.allure.Step;
@@ -33,6 +34,7 @@ public class CreateNewContactPage {
         log.info("Entering model data to all existing fields");
         new Dropdown("Salutation").select(contactModel.getSalutation());
         new Input("First Name").write(contactModel.getFirstName());
+        new InputWithSuggestion("Account Name").inputSuggestion("John Doe");
         //new InputWithSuggestion("Parent Account").inputSuggestion(accountModel.getParentAccount()); - can't beat it...
         new Input("Last Name").write(contactModel.getLastName());
         new Input("Phone").write(contactModel.getPhone());

@@ -22,6 +22,12 @@ public class AccountInfoParser extends BaseWrapper{
                     .getText();
         }
 
+        if (label.equals("Phone (2)")) {
+            return $x("//a[contains(@href,'tel')]")
+                    .shouldBe(visible)
+                    .getText();
+        }
+
         return $x(String.format("//p[text()='%s']/following-sibling::p/descendant::a", label))
                 .getText();
     }

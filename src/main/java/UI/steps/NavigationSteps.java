@@ -10,4 +10,9 @@ public class NavigationSteps extends BaseSteps {
     public void switchToAccountsTab(){
         navigationPage.switchToAccountsTab();
     }
+
+    public void switchToContactsTab(){
+        navigationPage.switchToContactsTab();
+    }
+
 }

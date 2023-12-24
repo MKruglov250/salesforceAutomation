@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.$x;
 @Log4j2
 public class SingleAccountPage {
 
-    protected SelenideElement accountTitle = $x("//slot[@name='primaryField']/descendant::lightning-formatted-text");
+    protected SelenideElement accountTitle = $x("//slot[@name='primaryField']//span[@class='custom-truncate uiOutputText']");
     protected SelenideElement accountType = $x("//p[text()='Type']");
     protected SelenideElement accountPhone = $x("//p[text()='Phone']");
     protected SelenideElement accountWebsite = $x("//p[text()='Website']");

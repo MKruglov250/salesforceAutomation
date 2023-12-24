@@ -4,6 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 import dto.ContactModel;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
+import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.*;
@@ -11,7 +12,7 @@ import static com.codeborne.selenide.Selenide.*;
 @Log4j2
 public class ContactsPage {
 
-    protected SelenideElement newContactButton = $x("//div[@title='New']/parent::a");
+    protected SelenideElement newContactButton = $x("//button[text()='New']");
     protected SelenideElement editButton = $x("//a[@title='Edit']");
     protected SelenideElement deleteButton = $x("//a[@title='Delete']");
     protected SelenideElement confirmDeleteButton = $x("//button[@title='Delete']");
@@ -26,6 +27,12 @@ public class ContactsPage {
     public void openContact(String contactLabel){
         log.info("Opening contact: " + contactLabel);
         SelenideElement contact = $x(String.format("//a[@title='%s']",contactLabel));
+        $x("//td").sendKeys(Keys.PAGE_DOWN);
+        $x("//td").sendKeys(Keys.PAGE_DOWN);
+        $x("//td").sendKeys(Keys.PAGE_DOWN);
+        $x("//td").sendKeys(Keys.PAGE_DOWN);
+        $x("//td").sendKeys(Keys.PAGE_DOWN);
+        contact.scrollTo();
         contact.should(exist);
         contact.click();
     }
