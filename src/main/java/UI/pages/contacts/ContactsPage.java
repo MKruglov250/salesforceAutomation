@@ -17,7 +17,7 @@ public class ContactsPage {
     protected SelenideElement confirmDeleteButton = $x("//button[@title='Delete']");
 
     @Step("Click New Contact button")
-    public void clickNewAccountButton(){
+    public void clickNewContactButton(){
         log.info("Click New Account Button");
         newContactButton.click();
     }
@@ -59,8 +59,5 @@ public class ContactsPage {
         log.info("Confirming Deletion");
         confirmDeleteButton.click();
     }
-
-
-
 
 }

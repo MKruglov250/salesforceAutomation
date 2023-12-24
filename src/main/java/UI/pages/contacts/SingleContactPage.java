@@ -16,8 +16,8 @@ public class SingleContactPage {
     protected SelenideElement contactPhone = $x("//p[text()='Phone (2) ']");
     protected SelenideElement contactEmail = $x("//p[text()='Email']");
 
-    @Step("Account Title Field Exists")
-    public boolean checkContactFullName(){
+    @Step("Account Contact Fullname Field Exists")
+    public boolean checkContactFullNameExists(){
         return contactFullName.exists();
     }
 
