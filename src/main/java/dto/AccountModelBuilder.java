@@ -1,7 +1,11 @@
 package dto;
 
 import com.github.javafaker.Faker;
+import com.google.gson.Gson;
+import org.json.simple.parser.ParseException;
 import utilities.AccountUtils;
+
+import java.io.IOException;
 
 public class AccountModelBuilder {
 
@@ -56,5 +60,10 @@ public class AccountModelBuilder {
         return new AccountModel.AccountModelBuilder()
                 .accountName("Edited Account")
                 .build();
+    }
+
+    public static AccountModel getApiAccount() throws IOException, ParseException {
+        Gson gson = new Gson();
+        return gson.fromJson(AccountUtils.parseJson("apiAccount.json"),AccountModel.class);
     }
 }

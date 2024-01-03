@@ -31,4 +31,9 @@ public class AccountUtils {
         return jsonObj.get(attribute).toString();
     }
 
+    @Step("Parse JSON")
+    public static String parseJson(String resourceName) throws IOException, ParseException {
+        return parser.parse(new FileReader("src/main/resources/" + resourceName)).toString();
+    }
+
 }
