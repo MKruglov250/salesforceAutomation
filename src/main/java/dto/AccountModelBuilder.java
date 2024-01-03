@@ -62,6 +62,13 @@ public class AccountModelBuilder {
                 .build();
     }
 
+    public static AccountModel getEmptyAccount(){
+        return new AccountModel.AccountModelBuilder()
+                .billingCity("Warsaw")
+                .build();
+    }
+
+
     public static AccountModel getApiAccount() throws IOException, ParseException {
         Gson gson = new Gson();
         return gson.fromJson(AccountUtils.parseJson("apiAccount.json"),AccountModel.class);
