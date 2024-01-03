@@ -22,7 +22,6 @@ public class AccountsApi extends BaseApi {
     @Step("API: Read Account")
     public Response getAccount(String accountId){
         log.info("Reading Account with id: " + accountId);
-//        accountId = "001Wy000000WzjYIAS"; - Test account
         return get(accountEndpoint.concat(accountId), HttpStatus.SC_OK);
     }
 

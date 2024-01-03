@@ -49,14 +49,6 @@ public class AccountsApiTest {
     public void readAccountTest(){
         log.info("Test: read existing account");
         Response response = accountsApi.getAccount(newAccountId);
-        Assert.assertEquals(response.body().jsonPath().getString("Name"),
-                account.getAccountName());
-    }
-
-    @Test(description = "Read Existing Account: full comparison", groups = "Smoke")
-    public void readAccountFullComparison(){
-        log.info("Test: read existing account - full data fields comparison");
-        Response response = accountsApi.getAccount(newAccountId);
         Assert.assertEquals(gson.fromJson(response.body().asString(), AccountModel.class),
                 account);
     }
