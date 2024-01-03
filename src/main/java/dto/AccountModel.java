@@ -19,7 +19,9 @@ public class AccountModel {
     private String website;
     private String accountSite;
     private String tickerSymbol;
+    @SerializedName("Type")
     private String type;
+    @SerializedName("Industry")
     private String industry;
     private String employees;
     private String annualRevenue;

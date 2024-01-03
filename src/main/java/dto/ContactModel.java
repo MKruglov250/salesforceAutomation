@@ -9,8 +9,11 @@ import lombok.Data;
 public class ContactModel {
     @SerializedName("Id")
     private String id;
+    @SerializedName("Salutation")
     private String salutation;
+    @SerializedName("FirstName")
     private String firstName;
+    @SerializedName("LastName")
     private String lastName;
     private String phone;
     private String homePhone;
