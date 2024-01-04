@@ -15,6 +15,8 @@ import lombok.extern.log4j.Log4j2;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
+import org.testng.annotations.Listeners;
+import utilities.OurListener;
 import utilities.PropertyReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -25,6 +27,7 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
+@Listeners(OurListener.class)
 @Log4j2
 public class BaseTest {
 
