@@ -1,7 +1,12 @@
 package dto;
 
 import com.github.javafaker.Faker;
+import com.google.gson.Gson;
+import org.json.simple.parser.ParseException;
+import utilities.AccountUtils;
 import utilities.ContactUtils;
+
+import java.io.IOException;
 
 public class ContactModelBuilder {
 
@@ -55,5 +60,16 @@ public class ContactModelBuilder {
                 .lastName("Edited")
                 .firstName("Contact")
                 .build();
+    }
+
+    public static ContactModel getEmptyContact(){
+        return new ContactModel.ContactModelBuilder()
+                .description("Test Desc")
+                .build();
+    }
+
+    public static ContactModel getApiContact() throws IOException, ParseException {
+        Gson gson = new Gson();
+        return gson.fromJson(AccountUtils.parseJson("apiContact.json"),ContactModel.class);
     }
 }
