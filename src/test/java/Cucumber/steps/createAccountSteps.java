@@ -8,7 +8,6 @@ import dto.AccountModel;
 import dto.AccountModelBuilder;
 import dto.UserModel;
 import dto.UserModelBuilder;
-import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -17,7 +16,6 @@ import lombok.extern.log4j.Log4j2;
 import utilities.PropertyReader;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -65,10 +63,11 @@ public class createAccountSteps {
     public void accountTitleIsJohnFrost() {
         log.info("Checking that account name is: " + essentialAccount.getAccountName());
         accountPageSteps.checkTitleField(essentialAccount);
-    }
-
-    @After("Logout")
-    public void logout(){
         loginPageSteps.logout();
     }
+
+//    @After("Logout")
+//    public void logout(){
+//        loginPageSteps.logout();
+//    }
 }

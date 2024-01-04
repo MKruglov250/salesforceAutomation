@@ -12,10 +12,9 @@ import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import io.qameta.allure.selenide.AllureSelenide;
 import lombok.extern.log4j.Log4j2;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 
-import org.testng.annotations.Listeners;
+import utilities.RetryListener;
 import utilities.OurListener;
 import utilities.PropertyReader;
 import java.io.IOException;
@@ -27,7 +26,7 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
-@Listeners(OurListener.class)
+@Listeners({OurListener.class, RetryListener.class})
 @Log4j2
 public class BaseTest {
 
@@ -46,7 +45,7 @@ public class BaseTest {
         return Files.readAllBytes(Paths.get("src/main/resources", resourceName));
     }
 
-    @BeforeSuite(alwaysRun = true, description = "Initialize Salesforce autotest framework")
+    @BeforeTest(alwaysRun = true, description = "Initialize Salesforce autotest framework")
     public void before() throws IOException {
 
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
@@ -72,7 +71,7 @@ public class BaseTest {
         log.info("Web driver configuration complete");
     }
 
-    @AfterSuite(description = "Closing web drivers", alwaysRun = true)
+    @AfterTest(description = "Closing web drivers", alwaysRun = true)
     public void afterTest() {
         closeWebDriver();
     }
