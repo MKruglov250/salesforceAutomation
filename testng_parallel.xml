@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Parallel API and UI" parallel="tests" thread-count="2">
+    <listeners>
+        <listener class-name="utilities.RetryListener"/>
+        <listener class-name="utilities.OurListener"/>
+    </listeners>
+    <test name="UI and Cucumber">
+        <classes>
+            <class name="UI.LoginTest"/>
+            <class name="UI.AccountsTest"/>
+            <class name="UI.ContactsTest"/>
+            <class name="Cucumber.runner.CucumberRunner"/>
+        </classes>
+    </test> <!-- Test -->
+    <test name="API">
+        <classes>
+            <class name="API.AccountsApiTest"/>
+            <class name="API.ContactsApiTest"/>
+        </classes>
+    </test>
+</suite> <!-- Suite -->
