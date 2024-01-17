@@ -10,7 +10,6 @@
             <class name="UI.LoginTest"/>
             <class name="UI.AccountsTest"/>
             <class name="UI.ContactsTest"/>
-            <class name="Cucumber.runner.CucumberRunner"/>
         </classes>
     </test> <!-- Test -->
     <test name="API">
