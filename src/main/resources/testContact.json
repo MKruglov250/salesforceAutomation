@@ -1,0 +1,11 @@
+{"salutation":"Dr.","firstName":"Jerry","lastName":"Smith",
+  "phone":"878787","homePhone":"121212","accountName":"John Doe",
+"title":"Manager","department":"Sales","birthdate":"2005-12-01",
+  "reportsTo":"George Martin",
+"leadSource":"Web","mobile":"300222","otherPhone":"111111",
+"fax":"222222","email":"jerry@testmail.com","assistant":"Mike",
+"assistantPhone":"87654","mailingCity":"Warsaw","mailingCountry":"Poland",
+  "mailingStreet":"Kolotushkin","mailingZipCode":"666888", "mailingState":"Wsw",
+  "otherCity":"Vilnius","otherState":"Vilnius","otherCountry":"Lithuania",
+  "otherStreet":"Lentines", "otherZipCode":"09282",
+"languages":"English","level":"Primary","description":"Test description"}
