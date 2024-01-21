@@ -64,7 +64,7 @@ public class AccountsApi extends BaseApi {
 
     @Step("API: Get Accounts List")
     public AccountsList getAccountsList(){
-        log.info("Getting list of existing accounts: ");
+        log.info("Getting list of existing accounts");
         Response response = get(accountEndpoint,HttpStatus.SC_OK);
         return gson.fromJson(response.body().asString(), AccountsList.class);
     }

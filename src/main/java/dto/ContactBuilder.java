@@ -55,6 +55,14 @@ public class ContactBuilder {
                 .build();
     }
 
+    public static Contact getEssentialContact(String firstname, String lastname){
+
+        return new Contact.ContactBuilder()
+                .lastName(lastname)
+                .firstName(firstname)
+                .build();
+    }
+
     public static Contact getEditedContact(){
         return new Contact.ContactBuilder()
                 .lastName("Edited")

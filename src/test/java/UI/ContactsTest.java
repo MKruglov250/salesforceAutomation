@@ -5,19 +5,28 @@ import dto.Contact;
 import dto.ContactBuilder;
 import lombok.extern.log4j.Log4j2;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+import utilities.SetupCleanupUtils;
 
 @Log4j2
 public class ContactsTest extends BaseTest{
 
     Contact completeContact = ContactBuilder.getFullAccount();
-    Contact essentialContact = ContactBuilder.getEssentialContact();
+    Contact essentialContact = ContactBuilder.getEssentialContact("Saul", "Badguy");
     Contact editedContact = ContactBuilder.getEditedContact();
 
+    @BeforeClass(description = "Create Test Data")
+    public void setUpClass(){
+        SetupCleanupUtils.createJohnDoeAccount();
+    }
+
+    @AfterClass(description = "Cleanup Test Data")
+    public void cleanUp(){
+        SetupCleanupUtils.deleteRecentAccounts();
+    }
+
     @BeforeMethod(description = "Login and switch to Contacts tab", alwaysRun = true)
-    public void setUp(){
+    public void setUpMethod(){
         log.info("Logging in and opening Accounts tab");
         loginPageSteps.loginToSite(validUser);
         navigationSteps.switchToServicesScreen();
@@ -49,7 +58,6 @@ public class ContactsTest extends BaseTest{
     public void checkEmptyContactCreation(){
         log.info("Test: create contact with no data, check errors appear");
         contactPageSteps.createEmptyContact();
-
         contactPageSteps.checkErrorMessages();
 
         contactPageSteps.closeCreateContactWindow();
@@ -67,6 +75,7 @@ public class ContactsTest extends BaseTest{
     public void checkEditContact(){
         log.info("Test: edit existing contact first and last name");
         contactPageSteps.editExistingContact(essentialContact, editedContact);
+
         Assert.assertTrue(contactPageSteps.checkContactExists(editedContact));
     }
 

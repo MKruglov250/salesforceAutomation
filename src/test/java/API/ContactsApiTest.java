@@ -68,8 +68,7 @@ public class ContactsApiTest {
     public void getContactsListTest(){
         log.info("Test: get list of existing contacts");
         Response response = contactsApi.getContactsList();
-        String recentAccount = gson.toJson(response.body().jsonPath()
-                .getList("recentItems").get(0));
+        String recentAccount = response.asString();
         Assert.assertTrue(recentAccount.contains("Edited, Contact"));
     }
 

@@ -1,6 +1,7 @@
 package API.client;
 
 import API.base.BaseApi;
+import API.dto.ContactsList;
 import com.google.gson.Gson;
 import dto.Contact;
 import io.qameta.allure.Step;
@@ -9,6 +10,7 @@ import lombok.extern.log4j.Log4j2;
 import org.apache.http.HttpStatus;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 @Log4j2
 public class ContactsApi extends BaseApi {
@@ -59,9 +61,25 @@ public class ContactsApi extends BaseApi {
         return delete(contactEndpoint.concat(contactId), HttpStatus.SC_NO_CONTENT);
     }
 
-    @Step("API: Get Contacts List")
+    @Step("API: Get Contacts List as response")
     public Response getContactsList(){
-        log.info("Getting list of existing accounts: ");
+        log.info("Getting list of existing contacts");
         return get(contactEndpoint,HttpStatus.SC_OK);
+    }
+
+    @Step("API: Get contacts List as class")
+    public ContactsList getContactsListClass(){
+        log.info("Getting list of existing contacts as class");
+        Response response = get(contactEndpoint,HttpStatus.SC_OK);
+        return gson.fromJson(response.body().asString(), ContactsList.class);
+    }
+
+    @Step("API: delete recent contacts")
+    public void deleteRecentContacts() {
+        ArrayList<Contact> contactsList = getContactsListClass().getContactsList();
+        for (Contact contact : contactsList) {
+            deleteContact(contact.getId());
+        }
+        log.info("Recent contacts deleted");
     }
 }

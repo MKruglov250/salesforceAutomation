@@ -20,7 +20,6 @@ public class AccountsTest extends BaseTest {
     @BeforeClass(description = "Create Mock Data for executing Accounts tests")
     public void setUpClass(){
         SetupCleanupUtils.createTestAccounts();
-        SetupCleanupUtils.createTestContacts();
     }
 
     @AfterClass(description = "Delete resources created during test")
