@@ -6,7 +6,6 @@ import dto.AccountBuilder;
 import lombok.extern.log4j.Log4j2;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import utilities.SetupCleanupUtils;
 
 @Log4j2
 public class AccountsTest extends BaseTest {
@@ -16,16 +15,6 @@ public class AccountsTest extends BaseTest {
     Account toEditAccount = AccountBuilder.getEssentialAccount("NOT YET EDITED");
     Account editedAccount = AccountBuilder.getEssentialAccount("Edited Account");
     Account toDeleteAccount = AccountBuilder.getEssentialAccount("TO DELETE");
-
-    @BeforeClass(description = "Create Mock Data for executing Accounts tests")
-    public void setUpClass(){
-        SetupCleanupUtils.createTestAccounts();
-    }
-
-    @AfterClass(description = "Delete resources created during test")
-    public void cleanUpClass(){
-        SetupCleanupUtils.deleteRecentAccounts();
-    }
 
     @BeforeMethod(description = "Login and switch to Accounts tab", alwaysRun = true)
     public void setUpTest(){

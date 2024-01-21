@@ -6,24 +6,15 @@ import dto.ContactBuilder;
 import lombok.extern.log4j.Log4j2;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import utilities.SetupCleanupUtils;
 
 @Log4j2
 public class ContactsTest extends BaseTest{
 
     Contact completeContact = ContactBuilder.getFullAccount();
-    Contact essentialContact = ContactBuilder.getEssentialContact("Saul", "Badguy");
+    Contact essentialContact = ContactBuilder.getEssentialContact("Ray", "Ban");
     Contact editedContact = ContactBuilder.getEditedContact();
-
-    @BeforeClass(description = "Create Test Data")
-    public void setUpClass(){
-        SetupCleanupUtils.createJohnDoeAccount();
-    }
-
-    @AfterClass(description = "Cleanup Test Data")
-    public void cleanUp(){
-        SetupCleanupUtils.deleteRecentAccounts();
-    }
+    Contact contactToEdit = ContactBuilder.getEssentialContact("TO","EDIT");
+    Contact contactToDelete = ContactBuilder.getEssentialContact("TO","DELETE");
 
     @BeforeMethod(description = "Login and switch to Contacts tab", alwaysRun = true)
     public void setUpMethod(){
@@ -74,29 +65,19 @@ public class ContactsTest extends BaseTest{
     @Test(description = "Check Edit Contact", groups = "Regression", priority = 1)
     public void checkEditContact(){
         log.info("Test: edit existing contact first and last name");
-        contactPageSteps.editExistingContact(essentialContact, editedContact);
+        contactPageSteps.editExistingContact(contactToEdit, editedContact);
 
         Assert.assertTrue(contactPageSteps.checkContactExists(editedContact));
     }
 
     @Test(description = "Check Delete Complete Contact", groups = "Regression",
             priority = 2)
-    public void checkDeleteCompleteContact(){
-        log.info("Test: delete complete contact");
-        contactPageSteps.deleteExistingContact(completeContact);
+    public void checkDeleteContact(){
+        log.info("Test: delete contact");
+        contactPageSteps.deleteExistingContact(contactToDelete);
         Selenide.refresh();
 
-        Assert.assertFalse(contactPageSteps.checkContactExists(completeContact));
-    }
-
-    @Test(description = "Check Delete Edited Contact", groups = "Regression",
-            priority = 2)
-    public void checkDeleteEditedContact(){
-        log.info("Test: delete edited Contact");
-        contactPageSteps.deleteExistingContact(editedContact);
-        Selenide.refresh();
-
-        Assert.assertFalse(contactPageSteps.checkContactExists(editedContact));
+        Assert.assertFalse(contactPageSteps.checkContactExists(contactToDelete));
     }
 
 }

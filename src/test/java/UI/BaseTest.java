@@ -15,6 +15,7 @@ import org.testng.annotations.*;
 import utilities.RetryListener;
 import utilities.OurListener;
 import utilities.PropertyReader;
+import utilities.SetupCleanupUtils;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -42,6 +43,22 @@ public class BaseTest {
     public static byte[] getFileBytes(String resourceName) throws IOException{
         log.info("Attaching Properties file");
         return Files.readAllBytes(Paths.get("src/main/resources", resourceName));
+    }
+
+    @BeforeSuite(description = "Create Test Data")
+    public void setUpClass(){
+        SetupCleanupUtils.deleteRecentAccounts();
+        SetupCleanupUtils.deleteRecentContacts();
+
+        SetupCleanupUtils.createTestAccounts();
+        SetupCleanupUtils.createJohnDoeAccount();
+        SetupCleanupUtils.createTestContacts();
+    }
+
+    @AfterSuite(description = "Cleanup Test Data")
+    public void cleanUp(){
+        SetupCleanupUtils.deleteRecentAccounts();
+        SetupCleanupUtils.deleteRecentContacts();
     }
 
     @BeforeTest(alwaysRun = true, description = "Initialize Salesforce autotest framework")
