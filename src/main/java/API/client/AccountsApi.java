@@ -19,6 +19,7 @@ public class AccountsApi extends BaseApi {
     public AccountsApi() throws IOException {
     }
 
+
     @Step("API: Read Account")
     public Response getAccount(String accountId){
         log.info("Reading Account with id: " + accountId);

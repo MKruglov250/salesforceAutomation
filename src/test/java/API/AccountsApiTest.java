@@ -18,7 +18,7 @@ public class AccountsApiTest {
     Gson gson = new Gson();
     AccountsApi accountsApi = new AccountsApi();
     AccountModel account = AccountModelBuilder.getApiAccount();
-    AccountModel editedAccount = AccountModelBuilder.getEditedAccount();
+    AccountModel editedAccount = AccountModelBuilder.getEssentialAccount("Edited Account");
     AccountModel emptyAccount = AccountModelBuilder.getEmptyAccount();
     static String newAccountId;
 

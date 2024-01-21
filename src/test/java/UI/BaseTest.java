@@ -5,18 +5,18 @@ import UI.steps.ContactPageSteps;
 import UI.steps.LoginPageSteps;
 import UI.steps.NavigationSteps;
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.logevents.SelenideLogger;
 import dto.UserModel;
 import dto.UserModelBuilder;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
-import io.qameta.allure.selenide.AllureSelenide;
 import lombok.extern.log4j.Log4j2;
 import org.testng.annotations.*;
 
 import utilities.RetryListener;
 import utilities.OurListener;
 import utilities.PropertyReader;
+import utilities.SetupCleanupUtils;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -48,13 +48,8 @@ public class BaseTest {
     @BeforeTest(alwaysRun = true, description = "Initialize Salesforce autotest framework")
     public void before() throws IOException {
 
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
-                .screenshots(true)
-                .savePageSource(false)
-                .includeSelenideSteps(true)
-        );
-
-
+        SetupCleanupUtils.createTestAccounts();
+        SetupCleanupUtils.createTestContacts();
 
         log.info("Starting configuring web driver");
         getFileBytes("config.properties");

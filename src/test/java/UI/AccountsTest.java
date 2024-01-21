@@ -14,7 +14,9 @@ public class AccountsTest extends BaseTest {
 
     AccountModel completeAccount = AccountModelBuilder.getFullAccount();
     AccountModel essentialAccount = AccountModelBuilder.getEssentialAccount();
-    AccountModel editedAccount = AccountModelBuilder.getEditedAccount();
+    AccountModel toEditAccount = AccountModelBuilder.getEssentialAccount("NOT YET EDITED");
+    AccountModel editedAccount = AccountModelBuilder.getEssentialAccount("Edited Account");
+    AccountModel toDeleteAccount = AccountModelBuilder.getEssentialAccount("TO DELETE");
 
     @BeforeMethod(description = "Login and switch to Accounts tab", alwaysRun = true)
     public void setUp(){
@@ -62,26 +64,16 @@ public class AccountsTest extends BaseTest {
     @Test(description = "Check Edit Account", groups = "Regression", priority = 1)
     public void checkEditAccount(){
         log.info("Test: edit existing account title");
-        accountPageSteps.editExistingAccount(essentialAccount,editedAccount.getAccountName());
+        accountPageSteps.editExistingAccount(toEditAccount,editedAccount.getAccountName());
         Assert.assertTrue(accountPageSteps.checkAccountExists(editedAccount));
     }
-    
-    @Test(description = "Check Delete Complete Account", groups = "Regression",
-            priority = 2)
-    public void checkDeleteCompleteAccount(){
-        log.info("Test: delete complete account");
-        accountPageSteps.deleteExistingAccount(completeAccount);
-        Selenide.refresh();
-        Assert.assertFalse(accountPageSteps.checkAccountExists(completeAccount));
-    }
 
-    @Test(description = "Check Delete Edited Account", groups = "Regression",
-            priority = 2)
-    public void checkDeleteEditedAccount(){
-        log.info("Test: delete edited account");
-        accountPageSteps.deleteExistingAccount(editedAccount);
+    @Test(description = "Check Account Deletion", groups = "Regression", priority = 2)
+    public void checkDeleteAccount(){
+        log.info("Test: delete existing test account");
+        accountPageSteps.deleteExistingAccount(toDeleteAccount);
         Selenide.refresh();
-        Assert.assertFalse(accountPageSteps.checkAccountExists(editedAccount));
+        Assert.assertFalse(accountPageSteps.checkAccountExists(toDeleteAccount));
     }
 
     @AfterMethod

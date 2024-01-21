@@ -1,7 +1,7 @@
 {"rating":"Hot","accountName":"Bill Murray","phone":"123000",
   "fax":"456000","accountNumber":"789000","website":"https://google.com/",
 "accountSite":"Remote","tickerSymbol":"R","type":"Prospect",
-  "parentAccount":"John Doe",
+  "parentAccount":"Duke de France",
 "industry":"Agriculture","employees":"300","annualRevenue":"9000000",
 "sicCode":"4000","billingStreet":"Pushkin","billingZipCode":"444222",
 "billingCity":"Warsaw","billingState":"Warsaw","billingCountry":"Poland",

@@ -56,11 +56,11 @@ public class AccountModelBuilder {
                 .build();
     }
 
-    public static AccountModel getEditedAccount(){
+    public static AccountModel getEssentialAccount(String name){
         return new AccountModel.AccountModelBuilder()
-                .accountName("Edited Account")
-                .build();
+                .accountName(name).build();
     }
+
 
     public static AccountModel getEmptyAccount(){
         return new AccountModel.AccountModelBuilder()
