@@ -1,8 +1,8 @@
 package utilities;
 
 import API.client.AccountsApi;
-import dto.AccountModel;
-import dto.AccountModelBuilder;
+import dto.Account;
+import dto.AccountBuilder;
 
 import java.io.IOException;
 
@@ -18,9 +18,9 @@ public class SetupCleanupUtils {
         }
     }
 
-    static AccountModel accJohnDoe = AccountModelBuilder.getEssentialAccount("Duke de France");
-    static AccountModel accToEdit = AccountModelBuilder.getEssentialAccount("NOT YET EDITED");
-    static AccountModel accToDelete = AccountModelBuilder.getEssentialAccount("TO DELETE");
+    static Account accJohnDoe = AccountBuilder.getEssentialAccount("Duke de France");
+    static Account accToEdit = AccountBuilder.getEssentialAccount("NOT YET EDITED");
+    static Account accToDelete = AccountBuilder.getEssentialAccount("TO DELETE");
 
     public SetupCleanupUtils(){
     }

@@ -2,8 +2,8 @@ package API;
 
 import API.client.AccountsApi;
 import com.google.gson.Gson;
-import dto.AccountModel;
-import dto.AccountModelBuilder;
+import dto.Account;
+import dto.AccountBuilder;
 import io.restassured.response.Response;
 import lombok.extern.log4j.Log4j2;
 import org.json.simple.parser.ParseException;
@@ -17,9 +17,9 @@ public class AccountsApiTest {
 
     Gson gson = new Gson();
     AccountsApi accountsApi = new AccountsApi();
-    AccountModel account = AccountModelBuilder.getApiAccount();
-    AccountModel editedAccount = AccountModelBuilder.getEssentialAccount("Edited Account");
-    AccountModel emptyAccount = AccountModelBuilder.getEmptyAccount();
+    Account account = AccountBuilder.getApiAccount();
+    Account editedAccount = AccountBuilder.getEssentialAccount("Edited Account");
+    Account emptyAccount = AccountBuilder.getEmptyAccount();
     static String newAccountId;
 
     public AccountsApiTest() throws IOException, ParseException {
@@ -49,7 +49,7 @@ public class AccountsApiTest {
     public void readAccountTest(){
         log.info("Test: read existing account");
         Response response = accountsApi.getAccount(newAccountId);
-        Assert.assertEquals(gson.fromJson(response.body().asString(), AccountModel.class),
+        Assert.assertEquals(gson.fromJson(response.body().asString(), Account.class),
                 account);
     }
 

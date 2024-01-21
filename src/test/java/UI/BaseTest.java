@@ -15,7 +15,6 @@ import org.testng.annotations.*;
 import utilities.RetryListener;
 import utilities.OurListener;
 import utilities.PropertyReader;
-import utilities.SetupCleanupUtils;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -47,9 +46,6 @@ public class BaseTest {
 
     @BeforeTest(alwaysRun = true, description = "Initialize Salesforce autotest framework")
     public void before() throws IOException {
-
-        SetupCleanupUtils.createTestAccounts();
-        SetupCleanupUtils.createTestContacts();
 
         log.info("Starting configuring web driver");
         getFileBytes("config.properties");

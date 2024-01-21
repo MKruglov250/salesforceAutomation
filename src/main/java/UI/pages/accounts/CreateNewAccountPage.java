@@ -3,8 +3,9 @@ package UI.pages.accounts;
 
 import UI.wrappers.Dropdown;
 import UI.wrappers.Input;
+import UI.wrappers.InputWithSuggestion;
 import com.codeborne.selenide.SelenideElement;
-import dto.AccountModel;
+import dto.Account;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 
@@ -21,53 +22,52 @@ public class CreateNewAccountPage extends SingleAccountPage {
     SelenideElement accountInfo = $x("//span[text()='Account Information']");
 
     @Step("Enter only necessary Account Data from Model")
-    public void enterNecessaryData(AccountModel accountModel){
+    public void enterNecessaryData(Account account){
         accountInfo.shouldBe(visible);
         log.info("Entering model data to obligatory fields");
-        new Input("Account Name").write(accountModel.getAccountName());
+        new Input("Account Name").write(account.getAccountName());
     }
 
     @Step("Enter full Account Data from Model")
-    public void enterCompleteData(AccountModel accountModel){
+    public void enterCompleteData(Account account){
         accountInfo.shouldBe(visible);
         log.info("Entering model data to all existing fields");
-        new Dropdown("Rating").select(accountModel.getRating());
-        new Input("Account Name").write(accountModel.getAccountName());
-        //new InputWithSuggestion("Parent Account").inputSuggestion(accountModel.getParentAccount()); - can't beat it...
-        new Input("Phone").write(accountModel.getPhone());
-        new Input("Fax").write(accountModel.getFax());
-        new Input("Account Number").write(accountModel.getAccountNumber());
-        new Input("Website").write(accountModel.getWebsite());
-        new Input("Account Site").write(accountModel.getAccountSite());
-        new Input("Ticker Symbol").write(accountModel.getTickerSymbol());
-        new Dropdown("Type").select(accountModel.getType());
-        new Dropdown("Ownership").select(accountModel.getOwnership());
-        new Dropdown("Industry").select(accountModel.getIndustry());
-        new Input("Employees").write(accountModel.getEmployees());
-        new Input("Annual Revenue").write(accountModel.getAnnualRevenue());
-        new Input("SIC Code").write(accountModel.getSicCode());
+        new Dropdown("Rating").select(account.getRating());
+        new Input("Account Name").write(account.getAccountName());
+        new InputWithSuggestion("Parent Account").inputSuggestion(account.getParentAccount());
+        new Input("Phone").write(account.getPhone());
+        new Input("Fax").write(account.getFax());
+        new Input("Account Number").write(account.getAccountNumber());
+        new Input("Website").write(account.getWebsite());
+        new Input("Account Site").write(account.getAccountSite());
+        new Input("Ticker Symbol").write(account.getTickerSymbol());
+        new Dropdown("Type").select(account.getType());
+        new Dropdown("Ownership").select(account.getOwnership());
+        new Dropdown("Industry").select(account.getIndustry());
+        new Input("Employees").write(account.getEmployees());
+        new Input("Annual Revenue").write(account.getAnnualRevenue());
+        new Input("SIC Code").write(account.getSicCode());
 
-        new Input("Billing Street").write(accountModel.getBillingStreet());
-        new Input("Billing Zip/Postal Code").write(accountModel.getBillingZipCode());
-        new Input("Billing City").write(accountModel.getBillingCity());
-        new Input("Billing State/Province").write(accountModel.getBillingState());
-        new Input("Billing Country").write(accountModel.getBillingCountry());
+        new Input("Billing Street").write(account.getBillingStreet());
+        new Input("Billing Zip/Postal Code").write(account.getBillingZipCode());
+        new Input("Billing City").write(account.getBillingCity());
+        new Input("Billing State/Province").write(account.getBillingState());
+        new Input("Billing Country").write(account.getBillingCountry());
 
-        new Input("Shipping Street").write(accountModel.getShippingStreet());
-        new Input("Shipping Zip/Postal Code").write(accountModel.getShippingZipCode());
-        new Input("Shipping City").write(accountModel.getShippingCity());
-        new Input("Shipping State/Province").write(accountModel.getShippingState());
-        new Input("Shipping Country").write(accountModel.getShippingCountry());
+        new Input("Shipping Street").write(account.getShippingStreet());
+        new Input("Shipping Zip/Postal Code").write(account.getShippingZipCode());
+        new Input("Shipping City").write(account.getShippingCity());
+        new Input("Shipping State/Province").write(account.getShippingState());
+        new Input("Shipping Country").write(account.getShippingCountry());
 
-        new Dropdown("Customer Priority").select(accountModel.getPriority());
-        new Dropdown("SLA").select(accountModel.getSla());
-        new Dropdown("Upsell Opportunity").select(accountModel.getUpsell());
-//        new Dropdown("Active").select(accountModel.getIsActive()); - some broken dropdown
-        new Input("SLA Expiration Date").write(accountModel.getSlaExpiration());
-        new Input("SLA Serial Number").write(accountModel.getSlaNumber());
-        new Input("Number of Locations").write(accountModel.getNumberLocations());
+        new Dropdown("Customer Priority").select(account.getPriority());
+        new Dropdown("SLA").select(account.getSla());
+        new Dropdown("Upsell Opportunity").select(account.getUpsell());
+        new Input("SLA Expiration Date").write(account.getSlaExpiration());
+        new Input("SLA Serial Number").write(account.getSlaNumber());
+        new Input("Number of Locations").write(account.getNumberLocations());
 
-        new Input("Description").write(accountModel.getDescription());
+        new Input("Description").write(account.getDescription());
     }
 
     @Step("Click Save button")

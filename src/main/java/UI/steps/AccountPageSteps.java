@@ -1,7 +1,7 @@
 package UI.steps;
 
 import UI.wrappers.Input;
-import dto.AccountModel;
+import dto.Account;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.testng.Assert;
@@ -10,18 +10,18 @@ import org.testng.Assert;
 public class AccountPageSteps extends BaseSteps {
 
     @Step("Create New Complete Account")
-    public void createCompleteAccount(AccountModel accountModel){
-        log.info("Creating account with complete data from model: " + accountModel.getAccountName());
+    public void createCompleteAccount(Account account){
+        log.info("Creating account with complete data from model: " + account.getAccountName());
         accountsPage.clickNewAccountButton();
-        accountsPage.enterCompleteData(accountModel);
+        accountsPage.enterCompleteData(account);
         accountsPage.clickSaveButton();
     }
 
     @Step("Create New Necessary Account")
-    public void createEssentialAccount(AccountModel accountModel){
-        log.info("Creating account with only essential fields from model: " + accountModel.getAccountName());
+    public void createEssentialAccount(Account account){
+        log.info("Creating account with only essential fields from model: " + account.getAccountName());
         accountsPage.clickNewAccountButton();
-        accountsPage.enterNecessaryData(accountModel);
+        accountsPage.enterNecessaryData(account);
         accountsPage.clickSaveButton();
     }
 
@@ -39,19 +39,19 @@ public class AccountPageSteps extends BaseSteps {
     }
 
     @Step("Read Account")
-    public void readAccount(AccountModel account){
+    public void readAccount(Account account){
         log.info("Openning account: " + account.getAccountName());
         accountsPage.openAccount(account.getAccountName());
     }
 
     @Step("Check Account Exists")
-    public boolean checkAccountExists(AccountModel account){
+    public boolean checkAccountExists(Account account){
         log.info("Checking account exists: " + account.getAccountName());
         return accountsPage.checkAccountExists(account.getAccountName());
     }
 
     @Step("Check All Account Fields")
-    public void checkAccountFields(AccountModel account){
+    public void checkAccountFields(Account account){
         log.info("Checking data fields of account: " + account.getAccountName());
         Assert.assertEquals(accountsPage.getAccountTitle(),account.getAccountName());
         Assert.assertEquals(accountsPage.getAccountType(),account.getType());
@@ -62,7 +62,7 @@ public class AccountPageSteps extends BaseSteps {
     }
 
     @Step("Check Title Field")
-    public void checkTitleField(AccountModel account){
+    public void checkTitleField(Account account){
         log.info("Checking Title field for account: " + account.getAccountName());
         Assert.assertEquals(accountsPage.getAccountTitle(),account.getAccountName());
     }
@@ -81,7 +81,7 @@ public class AccountPageSteps extends BaseSteps {
     }
 
     @Step("Edit existing account")
-    public void editExistingAccount(AccountModel account, String newName){
+    public void editExistingAccount(Account account, String newName){
         log.info("Editing Account: " + account.getAccountName());
         accountsPage.clickEditButton(account);
         new Input("Account Name").edit(newName);
@@ -89,7 +89,7 @@ public class AccountPageSteps extends BaseSteps {
     }
 
     @Step("Delete existing account")
-    public void deleteExistingAccount(AccountModel account){
+    public void deleteExistingAccount(Account account){
         log.info("Deleting Account: " + account.getAccountName());
         accountsPage.clickDeleteButton(account);
         accountsPage.confirmDeleteButton();

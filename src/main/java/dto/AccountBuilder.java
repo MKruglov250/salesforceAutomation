@@ -7,10 +7,10 @@ import utilities.AccountUtils;
 
 import java.io.IOException;
 
-public class AccountModelBuilder {
+public class AccountBuilder {
 
-    public static AccountModel getFullAccount() {
-        return new AccountModel.AccountModelBuilder()
+    public static Account getFullAccount() {
+        return new Account.AccountBuilder()
                 .accountName(AccountUtils.getAttribute("accountName"))
                 .rating(AccountUtils.getAttribute("rating"))
                 .parentAccount(AccountUtils.getAttribute("parentAccount"))
@@ -48,29 +48,29 @@ public class AccountModelBuilder {
     }
 
 
-    public static AccountModel getEssentialAccount(){
+    public static Account getEssentialAccount(){
         Faker faker = new Faker();
 
-        return new AccountModel.AccountModelBuilder()
+        return new Account.AccountBuilder()
                 .accountName(faker.funnyName().name())
                 .build();
     }
 
-    public static AccountModel getEssentialAccount(String name){
-        return new AccountModel.AccountModelBuilder()
+    public static Account getEssentialAccount(String name){
+        return new Account.AccountBuilder()
                 .accountName(name).build();
     }
 
 
-    public static AccountModel getEmptyAccount(){
-        return new AccountModel.AccountModelBuilder()
+    public static Account getEmptyAccount(){
+        return new Account.AccountBuilder()
                 .billingCity("Warsaw")
                 .build();
     }
 
 
-    public static AccountModel getApiAccount() throws IOException, ParseException {
+    public static Account getApiAccount() throws IOException, ParseException {
         Gson gson = new Gson();
-        return gson.fromJson(AccountUtils.parseJson("apiAccount.json"),AccountModel.class);
+        return gson.fromJson(AccountUtils.parseJson("apiAccount.json"), Account.class);
     }
 }

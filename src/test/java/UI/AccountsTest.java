@@ -1,25 +1,33 @@
 package UI;
 
 import com.codeborne.selenide.Selenide;
-import dto.AccountModel;
-import dto.AccountModelBuilder;
+import dto.Account;
+import dto.AccountBuilder;
 import lombok.extern.log4j.Log4j2;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import utilities.SetupCleanupUtils;
 
 @Log4j2
 public class AccountsTest extends BaseTest {
 
-    AccountModel completeAccount = AccountModelBuilder.getFullAccount();
-    AccountModel essentialAccount = AccountModelBuilder.getEssentialAccount();
-    AccountModel toEditAccount = AccountModelBuilder.getEssentialAccount("NOT YET EDITED");
-    AccountModel editedAccount = AccountModelBuilder.getEssentialAccount("Edited Account");
-    AccountModel toDeleteAccount = AccountModelBuilder.getEssentialAccount("TO DELETE");
+    Account completeAccount = AccountBuilder.getFullAccount();
+    Account essentialAccount = AccountBuilder.getEssentialAccount();
+    Account toEditAccount = AccountBuilder.getEssentialAccount("NOT YET EDITED");
+    Account editedAccount = AccountBuilder.getEssentialAccount("Edited Account");
+    Account toDeleteAccount = AccountBuilder.getEssentialAccount("TO DELETE");
+
+    @BeforeClass(description = "Create Mock Data for executing Accounts tests")
+    public void setUpClass(){
+        SetupCleanupUtils.createTestAccounts();
+        SetupCleanupUtils.createTestContacts();
+    }
 
     @BeforeMethod(description = "Login and switch to Accounts tab", alwaysRun = true)
-    public void setUp(){
+    public void setUpTest(){
         log.info("Logging in and opening Accounts tab");
         loginPageSteps.loginToSite(validUser);
         navigationSteps.switchToServicesScreen();

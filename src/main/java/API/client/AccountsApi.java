@@ -2,7 +2,7 @@ package API.client;
 
 import API.base.BaseApi;
 import com.google.gson.Gson;
-import dto.AccountModel;
+import dto.Account;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import lombok.extern.log4j.Log4j2;
@@ -33,21 +33,21 @@ public class AccountsApi extends BaseApi {
     }
 
     @Step("API: Create Account")
-    public Response createAccount(AccountModel account){
+    public Response createAccount(Account account){
         log.info("Creating account from model: " + account.getAccountName());
         String body = gson.toJson(account);
         return post(accountEndpoint, HttpStatus.SC_CREATED, body);
     }
 
     @Step("API: Create Account")
-    public Response createEmptyAccount(AccountModel account){
+    public Response createEmptyAccount(Account account){
         log.info("Creating account from model: " + account.getAccountName());
         String body = gson.toJson(account);
         return post(accountEndpoint, HttpStatus.SC_BAD_REQUEST, body);
     }
 
     @Step("API: Update Account")
-    public Response updateAccount(String accountId, AccountModel updatedAcc){
+    public Response updateAccount(String accountId, Account updatedAcc){
         log.info(String.format("Updating account %s with new name %s",
                 accountId, updatedAcc.getAccountName()));
         String body = gson.toJson(updatedAcc);
