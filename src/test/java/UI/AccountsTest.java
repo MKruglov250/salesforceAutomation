@@ -5,10 +5,7 @@ import dto.Account;
 import dto.AccountBuilder;
 import lombok.extern.log4j.Log4j2;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import utilities.SetupCleanupUtils;
 
 @Log4j2
@@ -26,12 +23,22 @@ public class AccountsTest extends BaseTest {
         SetupCleanupUtils.createTestContacts();
     }
 
+    @AfterClass(description = "Delete resources created during test")
+    public void cleanUpClass(){
+        SetupCleanupUtils.deleteRecentAccounts();
+    }
+
     @BeforeMethod(description = "Login and switch to Accounts tab", alwaysRun = true)
     public void setUpTest(){
         log.info("Logging in and opening Accounts tab");
         loginPageSteps.loginToSite(validUser);
         navigationSteps.switchToServicesScreen();
         navigationSteps.switchToAccountsTab();
+    }
+
+    @AfterMethod
+    public void logout(){
+        loginPageSteps.logout();
     }
 
     @Test(description = "Check Complete Account creation", groups = "Smoke")
@@ -82,11 +89,6 @@ public class AccountsTest extends BaseTest {
         accountPageSteps.deleteExistingAccount(toDeleteAccount);
         Selenide.refresh();
         Assert.assertFalse(accountPageSteps.checkAccountExists(toDeleteAccount));
-    }
-
-    @AfterMethod
-    public void logout(){
-        loginPageSteps.logout();
     }
 
 

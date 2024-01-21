@@ -1,6 +1,7 @@
 package API;
 
 import API.client.AccountsApi;
+import API.dto.AccountsList;
 import com.google.gson.Gson;
 import dto.Account;
 import dto.AccountBuilder;
@@ -65,9 +66,8 @@ public class AccountsApiTest {
     @Test(description = "Get list of accounts", groups = "Smoke", priority = 2)
     public void getAccountsListTest(){
         log.info("Test: get list of existing accounts");
-        Response response = accountsApi.getAccountsList();
-        String recentAccount = gson.toJson(response.body().jsonPath()
-                .getList("recentItems").get(0));
+        AccountsList accountsList = accountsApi.getAccountsList();
+        String recentAccount = accountsList.toString();
         Assert.assertTrue(recentAccount.contains("Edited Account"));
     }
 

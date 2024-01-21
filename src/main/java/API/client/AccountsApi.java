@@ -1,6 +1,7 @@
 package API.client;
 
 import API.base.BaseApi;
+import API.dto.AccountsList;
 import com.google.gson.Gson;
 import dto.Account;
 import io.qameta.allure.Step;
@@ -9,6 +10,7 @@ import lombok.extern.log4j.Log4j2;
 import org.apache.http.HttpStatus;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 @Log4j2
 public class AccountsApi extends BaseApi {
@@ -61,8 +63,17 @@ public class AccountsApi extends BaseApi {
     }
 
     @Step("API: Get Accounts List")
-    public Response getAccountsList(){
+    public AccountsList getAccountsList(){
         log.info("Getting list of existing accounts: ");
-        return get(accountEndpoint,HttpStatus.SC_OK);
+        Response response = get(accountEndpoint,HttpStatus.SC_OK);
+        return gson.fromJson(response.body().asString(), AccountsList.class);
+    }
+
+    public void deleteRecentAccounts() {
+        ArrayList<Account> accountList = getAccountsList().getAccountList();
+        for (Account account : accountList) {
+            deleteAccount(account.getId());
+        }
+        log.info("All Recent Accounts Deleted");
     }
 }

@@ -3,6 +3,7 @@ package utilities;
 import API.client.AccountsApi;
 import dto.Account;
 import dto.AccountBuilder;
+import io.qameta.allure.Step;
 
 import java.io.IOException;
 
@@ -25,10 +26,16 @@ public class SetupCleanupUtils {
     public SetupCleanupUtils(){
     }
 
+    @Step("Setup: creating test accounts")
     public static void createTestAccounts(){
         accountsApi.createAccount(accJohnDoe);
         accountsApi.createAccount(accToEdit);
         accountsApi.createAccount(accToDelete);
+    }
+
+    @Step("Cleanup: deleting all test accounts")
+    public static void deleteRecentAccounts(){
+        accountsApi.deleteRecentAccounts();
     }
     public static void createTestContacts(){
 
