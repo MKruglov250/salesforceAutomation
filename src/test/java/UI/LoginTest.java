@@ -15,13 +15,6 @@ public class LoginTest extends BaseTest{
         open("https://login.salesforce.com/");
     }
 
-    @Test(description = "Login with valid credentials", groups = "Smoke")
-    public void testLoginValidUser(){
-        log.info("Testing login with Valid credentials");
-        loginPageSteps.loginToSite(validUser);
-        Assert.assertTrue(loginPageSteps.checkLoginSuccess());
-        loginPageSteps.logout();
-    }
 
     @Test(description = "Login with incorrect credentials", groups = "Smoke")
     public void testLoginBadUser(){

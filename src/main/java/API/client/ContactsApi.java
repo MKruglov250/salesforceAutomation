@@ -2,7 +2,7 @@ package API.client;
 
 import API.base.BaseApi;
 import com.google.gson.Gson;
-import dto.ContactModel;
+import dto.Contact;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import lombok.extern.log4j.Log4j2;
@@ -32,21 +32,21 @@ public class ContactsApi extends BaseApi {
     }
 
     @Step("API: Create contact")
-    public Response createContact(ContactModel contact){
+    public Response createContact(Contact contact){
         log.info("Creating contact from model: " + contact.getLastName());
         String body = gson.toJson(contact);
         return post(contactEndpoint, HttpStatus.SC_CREATED, body);
     }
 
     @Step("API: Create contact")
-    public Response createEmptyContact(ContactModel contact){
+    public Response createEmptyContact(Contact contact){
         log.info("Creating contact from model: " + contact.getLastName());
         String body = gson.toJson(contact);
         return post(contactEndpoint, HttpStatus.SC_BAD_REQUEST, body);
     }
 
     @Step("API: Update contact")
-    public Response updateContact(String accountId, ContactModel updatedContact){
+    public Response updateContact(String accountId, Contact updatedContact){
         log.info(String.format("Updating contact %s with new name %s",
                 accountId, updatedContact.getLastName()));
         String body = gson.toJson(updatedContact);

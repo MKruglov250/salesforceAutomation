@@ -2,8 +2,8 @@ package API;
 
 import API.client.ContactsApi;
 import com.google.gson.Gson;
-import dto.ContactModel;
-import dto.ContactModelBuilder;
+import dto.Contact;
+import dto.ContactBuilder;
 import io.restassured.response.Response;
 import lombok.extern.log4j.Log4j2;
 import org.apache.http.HttpStatus;
@@ -18,9 +18,9 @@ public class ContactsApiTest {
 
     Gson gson = new Gson();
     ContactsApi contactsApi = new ContactsApi();
-    ContactModel contact = ContactModelBuilder.getApiContact();
-    ContactModel editedContact = ContactModelBuilder.getEditedContact();
-    ContactModel emptyContact = ContactModelBuilder.getEmptyContact();
+    Contact contact = ContactBuilder.getApiContact();
+    Contact editedContact = ContactBuilder.getEditedContact();
+    Contact emptyContact = ContactBuilder.getEmptyContact();
     static String newContactId;
 
     public ContactsApiTest() throws IOException, ParseException {
@@ -50,7 +50,7 @@ public class ContactsApiTest {
     public void readContactTest(){
         log.info("Test: read existing contact");
         Response response = contactsApi.getContact(newContactId);
-        Assert.assertEquals(gson.fromJson(response.body().asString(), ContactModel.class),
+        Assert.assertEquals(gson.fromJson(response.body().asString(), Contact.class),
                 contact);
     }
 

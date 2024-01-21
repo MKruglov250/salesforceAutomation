@@ -1,7 +1,7 @@
 package UI.pages.contacts;
 
 import com.codeborne.selenide.SelenideElement;
-import dto.ContactModel;
+import dto.Contact;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 
@@ -40,20 +40,20 @@ public class ContactsPage {
     }
 
     @Step("Click Actions Button")
-    public void clickActionsButton(ContactModel contact){
+    public void clickActionsButton(Contact contact){
         $x(String.format("//a[@title='%s']/ancestor::tr//button[@aria-expanded='false']",
                 contact.getFirstName() + " " + contact.getLastName())).click();
     }
 
     @Step("Click Edit button")
-    public void clickEditButton(ContactModel contact){
+    public void clickEditButton(Contact contact){
         log.info("Clicking Edit button for contact: " + contact.getAccountName());
         clickActionsButton(contact);
         editButton.click();
     }
 
     @Step("Click Delete button")
-    public void clickDeleteButton(ContactModel contact){
+    public void clickDeleteButton(Contact contact){
         log.info("Clicking Delete button for contact: " + contact.getAccountName());
         clickActionsButton(contact);
         deleteButton.click();

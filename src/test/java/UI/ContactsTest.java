@@ -1,8 +1,8 @@
 package UI;
 
 import com.codeborne.selenide.Selenide;
-import dto.ContactModel;
-import dto.ContactModelBuilder;
+import dto.Contact;
+import dto.ContactBuilder;
 import lombok.extern.log4j.Log4j2;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -12,9 +12,9 @@ import org.testng.annotations.Test;
 @Log4j2
 public class ContactsTest extends BaseTest{
 
-    ContactModel completeContact = ContactModelBuilder.getFullAccount();
-    ContactModel essentialContact = ContactModelBuilder.getEssentialContact();
-    ContactModel editedContact = ContactModelBuilder.getEditedContact();
+    Contact completeContact = ContactBuilder.getFullAccount();
+    Contact essentialContact = ContactBuilder.getEssentialContact();
+    Contact editedContact = ContactBuilder.getEditedContact();
 
     @BeforeMethod(description = "Login and switch to Contacts tab", alwaysRun = true)
     public void setUp(){

@@ -5,8 +5,8 @@ import UI.steps.ContactPageSteps;
 import UI.steps.LoginPageSteps;
 import UI.steps.NavigationSteps;
 import com.codeborne.selenide.Configuration;
-import dto.UserModel;
-import dto.UserModelBuilder;
+import dto.User;
+import dto.UserBuilder;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
@@ -29,8 +29,8 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 @Log4j2
 public class BaseTest {
 
-    UserModel validUser = UserModelBuilder.getValidUser();
-    UserModel badUser = UserModelBuilder.getIncorrectUser();
+    User validUser = UserBuilder.getValidUser();
+    User badUser = UserBuilder.getIncorrectUser();
 
     LoginPageSteps loginPageSteps = new LoginPageSteps();
     NavigationSteps navigationSteps = new NavigationSteps();

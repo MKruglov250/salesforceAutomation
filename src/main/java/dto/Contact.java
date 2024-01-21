@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class ContactModel {
+public class Contact {
     @SerializedName("Id")
     private String id;
     @SerializedName("Salutation")

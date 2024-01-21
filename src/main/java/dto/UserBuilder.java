@@ -3,20 +3,20 @@ package dto;
 import com.github.javafaker.Faker;
 import utilities.LoginUtils;
 
-public class UserModelBuilder {
+public class UserBuilder {
 
-    public static UserModel getValidUser() {
-        return new UserModel.UserModelBuilder()
+    public static User getValidUser() {
+        return new User.UserBuilder()
                 .email(LoginUtils.getLogin())
                 .password(LoginUtils.getPassword())
                 .build();
     }
 
 
-    public static UserModel getIncorrectUser(){
+    public static User getIncorrectUser(){
         Faker faker = new Faker();
 
-        return new UserModel.UserModelBuilder()
+        return new User.UserBuilder()
                 .email(faker.internet().emailAddress())
                 .password(faker.internet().password())
                 .build();
