@@ -24,7 +24,7 @@ public class ApiUtils {
     }
 
     public static String getToken() throws FileNotFoundException {
-        String endpoint = PropertyReader.getBaseUrl() + "services/oauth2/token";
+        String endpoint = PropertyReader.getLoginUrl() + "services/oauth2/token";
         RequestSpecification requestSpecification = given().contentType("multipart/form-data")
                 .multiPart("username",user.getUsername())
                 .multiPart("password",user.getPassword())

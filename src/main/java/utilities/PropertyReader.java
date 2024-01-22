@@ -73,8 +73,8 @@ public abstract class PropertyReader {
         return getSecureProperty("ApiUrl");
     }
 
-    public static String getBaseUrl() throws FileNotFoundException {
-        return getSecureProperty("Baseurl");
+    public static String getLoginUrl() throws FileNotFoundException {
+        return getSecureProperty("LoginUrl");
     }
 
 
