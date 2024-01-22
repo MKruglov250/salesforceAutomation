@@ -1,14 +1,16 @@
 package dto;
 
 import com.github.javafaker.Faker;
-import utilities.LoginUtils;
+import utilities.PropertyReader;
+
+import java.io.FileNotFoundException;
 
 public class UserBuilder {
 
-    public static User getValidUser() {
+    public static User getValidUser() throws FileNotFoundException {
         return new User.UserBuilder()
-                .email(LoginUtils.getLogin())
-                .password(LoginUtils.getPassword())
+                .email(PropertyReader.getLogin())
+                .password(PropertyReader.getPassword())
                 .build();
     }
 

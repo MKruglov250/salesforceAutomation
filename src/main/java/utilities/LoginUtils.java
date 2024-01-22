@@ -9,7 +9,7 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.IOException;
 
-
+// Fairly good JSON parser. Not used after refactoring. Keeping for future
 @Log4j2
 public class LoginUtils {
 

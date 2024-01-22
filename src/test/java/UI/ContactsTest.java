@@ -7,6 +7,8 @@ import lombok.extern.log4j.Log4j2;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.io.FileNotFoundException;
+
 @Log4j2
 public class ContactsTest extends BaseTest{
 
@@ -15,6 +17,9 @@ public class ContactsTest extends BaseTest{
     private Contact editedContact = ContactBuilder.getEditedContact();
     private Contact contactToEdit = ContactBuilder.getEssentialContact("TO","EDIT");
     private Contact contactToDelete = ContactBuilder.getEssentialContact("TO","DELETE");
+
+    public ContactsTest() throws FileNotFoundException {
+    }
 
     @BeforeMethod(description = "Login and switch to Contacts tab", alwaysRun = true)
     public void setUpMethod(){

@@ -17,6 +17,7 @@ import utilities.OurListener;
 import utilities.PropertyReader;
 import utilities.SetupCleanupUtils;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -38,6 +39,9 @@ public class BaseTest {
     protected NavigationSteps navigationSteps = new NavigationSteps();
     protected AccountPageSteps accountPageSteps = new AccountPageSteps();
     protected ContactPageSteps contactPageSteps = new ContactPageSteps();
+
+    public BaseTest() throws FileNotFoundException {
+    }
 
     @Attachment
     @Step("Attach Properties to report")

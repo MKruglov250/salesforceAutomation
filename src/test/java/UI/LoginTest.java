@@ -5,10 +5,15 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.FileNotFoundException;
+
 import static com.codeborne.selenide.Selenide.open;
 
 @Log4j2
 public class LoginTest extends BaseTest{
+
+    public LoginTest() throws FileNotFoundException {
+    }
 
     @BeforeMethod(description = "Open Login page", alwaysRun = true)
     public void openLoginPage(){

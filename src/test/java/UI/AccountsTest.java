@@ -7,6 +7,8 @@ import lombok.extern.log4j.Log4j2;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.io.FileNotFoundException;
+
 @Log4j2
 public class AccountsTest extends BaseTest {
 
@@ -15,6 +17,9 @@ public class AccountsTest extends BaseTest {
     private Account toEditAccount = AccountBuilder.getEssentialAccount("NOT YET EDITED");
     private Account editedAccount = AccountBuilder.getEssentialAccount("Edited Account");
     private Account toDeleteAccount = AccountBuilder.getEssentialAccount("TO DELETE");
+
+    public AccountsTest() throws FileNotFoundException {
+    }
 
     @BeforeMethod(description = "Login and switch to Accounts tab", alwaysRun = true)
     public void setUpTest(){
