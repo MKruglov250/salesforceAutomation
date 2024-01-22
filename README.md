@@ -29,11 +29,11 @@ Same tests for contacts.
 2. Confirm your email and login to Salesforce system
 3. Register your connected app for API using guideline: https://www.sfdcstop.com/2019/01/how-to-connect-to-salesforce-with.html
    !!!IMPORTANT!!! write down following data from point 3:
-   * Username (email)
-   * Password
-   * VerificationCode
-   * Client_ID (from Connected App);
-   * Client_Secret (from Connected App);
+   - Username (email)
+   - Password
+   - VerificationCode
+   - Client_ID (from Connected App)
+   - Client_Secret (from Connected App)
 4. Activate Salesforce API using guide: https://help.salesforce.com/s/articleView?id=release-notes.rn_security_username-password_flow_blocked_by_default.htm&release=244&type=5
 
 ### Running Locally
