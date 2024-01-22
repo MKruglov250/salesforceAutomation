@@ -50,8 +50,8 @@ Same tests for contacts.
 3. Run command 'mvn clean test'
 
 ### Running via Jenkins
-1. Create new Jenkins pipeline with running schedule of your choice, and Github link for current project;
-2. Add 'Allure Reporting' plugin to make resulting report look great;
+1. Add 'Allure Reporting' plugin to make resulting report look great;
+2. Create new Jenkins pipeline with running schedule of your choice; 
 3. Set checkbox 'This project is parametrized' to true;
 4. Add following parameters with default values:
    * Git Parameter: Name - BRANCH, Parameter Type - Branch, Default Value - origin/main
@@ -64,4 +64,10 @@ Same tests for contacts.
    * String Parameter: Name - GRANTTYPE, default value - password
    * String Parameter: Name - CLIENT_ID, default value - Client_Id saved in main paragraph's p3;
    * String Parameter: Name - CLIENT_Secret, default value - Client_Secret saved in main paragraph's p3;
-5. Sit back and enjoy watching Jenkins testing and generating resulting report;
+5. In definition select 'Pipeline script for SCM';
+6. In SCM select 'Git';
+7. Set https://github.com/MKruglov250/salesforceAutomation.git in 'Repository URL' field
+8. Add Branch to build - specify $BRANCH as Branch Specifier
+9. Set Jenkinsfile in 'Script Path' field
+
+Build and run Autotests as needed. Sit back and relax watching Jenkins doing the job. 
