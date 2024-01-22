@@ -14,11 +14,11 @@ import static com.codeborne.selenide.Selenide.$x;
 @Log4j2
 public class CreateNewContactPage {
 
-    SelenideElement saveButton = $x("//button[@name='SaveEdit']");
-    SelenideElement cancelButton = $x("//button[text()='Cancel']");
-    SelenideElement errorMessage = $x("//h2[text()='We hit a snag.']");
-    SelenideElement errorIcon = $x("//button[@id='window']");
-    SelenideElement contactInfo = $x("//span[text()='Contact Information']");
+    private SelenideElement saveButton = $x("//button[@name='SaveEdit']");
+    private SelenideElement cancelButton = $x("//button[text()='Cancel']");
+    private SelenideElement errorMessage = $x("//h2[text()='We hit a snag.']");
+    private SelenideElement errorIcon = $x("//button[@id='window']");
+    private SelenideElement contactInfo = $x("//span[text()='Contact Information']");
 
 
     @Step("Enter only necessary Contact Data from Model")

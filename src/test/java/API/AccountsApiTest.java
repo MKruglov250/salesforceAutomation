@@ -16,12 +16,12 @@ import java.io.IOException;
 @Log4j2
 public class AccountsApiTest {
 
-    Gson gson = new Gson();
-    AccountsApi accountsApi = new AccountsApi();
-    Account account = AccountBuilder.getApiAccount();
-    Account editedAccount = AccountBuilder.getEssentialAccount("Edited Account");
-    Account emptyAccount = AccountBuilder.getEmptyAccount();
-    static String newAccountId;
+    private Gson gson = new Gson();
+    private AccountsApi accountsApi = new AccountsApi();
+    private Account account = AccountBuilder.getApiAccount();
+    private Account editedAccount = AccountBuilder.getEssentialAccount("Edited Account");
+    private Account emptyAccount = AccountBuilder.getEmptyAccount();
+    private static String newAccountId;
 
     public AccountsApiTest() throws IOException, ParseException {
     }

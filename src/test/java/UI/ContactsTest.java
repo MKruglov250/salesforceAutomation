@@ -10,11 +10,11 @@ import org.testng.annotations.*;
 @Log4j2
 public class ContactsTest extends BaseTest{
 
-    Contact completeContact = ContactBuilder.getFullAccount();
-    Contact essentialContact = ContactBuilder.getEssentialContact("Ray", "Ban");
-    Contact editedContact = ContactBuilder.getEditedContact();
-    Contact contactToEdit = ContactBuilder.getEssentialContact("TO","EDIT");
-    Contact contactToDelete = ContactBuilder.getEssentialContact("TO","DELETE");
+    private Contact completeContact = ContactBuilder.getFullAccount();
+    private Contact essentialContact = ContactBuilder.getEssentialContact("Ray", "Ban");
+    private Contact editedContact = ContactBuilder.getEditedContact();
+    private Contact contactToEdit = ContactBuilder.getEssentialContact("TO","EDIT");
+    private Contact contactToDelete = ContactBuilder.getEssentialContact("TO","DELETE");
 
     @BeforeMethod(description = "Login and switch to Contacts tab", alwaysRun = true)
     public void setUpMethod(){

@@ -9,12 +9,12 @@ import static com.codeborne.selenide.Selenide.$x;
 @Log4j2
 public class LoginPage {
 
-    SelenideElement loginInput = $x("//input[@type='email']");
-    SelenideElement passwordInput = $x("//input[@type='password']");
-    SelenideElement submitButton = $x("//input[@type='submit']");
-    SelenideElement loginErrorMessage = $x("//*[contains(text(),'Please check your username')]");
-    SelenideElement profileButton = $x("//button[contains(@class,'userProfile')]");
-    SelenideElement logoutButton = $x("//a[text()='Log Out']");
+    private SelenideElement loginInput = $x("//input[@type='email']");
+    private SelenideElement passwordInput = $x("//input[@type='password']");
+    private SelenideElement submitButton = $x("//input[@type='submit']");
+    private SelenideElement loginErrorMessage = $x("//*[contains(text(),'Please check your username')]");
+    private SelenideElement profileButton = $x("//button[contains(@class,'userProfile')]");
+    private SelenideElement logoutButton = $x("//a[text()='Log Out']");
 
     @Step("Set user email")
     public void setLogin(String email){
@@ -32,13 +32,6 @@ public class LoginPage {
     public void clickSubmit(){
         submitButton.click();
         log.debug("Logging in");
-    }
-
-    @Step("Check Profile button exists")
-    public boolean checkProfileButtonExists(){
-        boolean profileExists = profileButton.exists();
-        log.debug("Profile button exists: " + profileExists);
-        return profileExists;
     }
 
     @Step("Check Login Failed message exists")

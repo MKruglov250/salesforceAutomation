@@ -16,12 +16,12 @@ import java.io.IOException;
 @Log4j2
 public class ContactsApiTest {
 
-    Gson gson = new Gson();
-    ContactsApi contactsApi = new ContactsApi();
-    Contact contact = ContactBuilder.getApiContact();
-    Contact editedContact = ContactBuilder.getEditedContact();
-    Contact emptyContact = ContactBuilder.getEmptyContact();
-    static String newContactId;
+    private Gson gson = new Gson();
+    private ContactsApi contactsApi = new ContactsApi();
+    private Contact contact = ContactBuilder.getApiContact();
+    private Contact editedContact = ContactBuilder.getEditedContact();
+    private Contact emptyContact = ContactBuilder.getEmptyContact();
+    private static String newContactId;
 
     public ContactsApiTest() throws IOException, ParseException {
     }

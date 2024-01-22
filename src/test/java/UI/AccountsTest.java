@@ -10,11 +10,11 @@ import org.testng.annotations.*;
 @Log4j2
 public class AccountsTest extends BaseTest {
 
-    Account completeAccount = AccountBuilder.getFullAccount();
-    Account essentialAccount = AccountBuilder.getEssentialAccount();
-    Account toEditAccount = AccountBuilder.getEssentialAccount("NOT YET EDITED");
-    Account editedAccount = AccountBuilder.getEssentialAccount("Edited Account");
-    Account toDeleteAccount = AccountBuilder.getEssentialAccount("TO DELETE");
+    private Account completeAccount = AccountBuilder.getFullAccount();
+    private Account essentialAccount = AccountBuilder.getEssentialAccount();
+    private Account toEditAccount = AccountBuilder.getEssentialAccount("NOT YET EDITED");
+    private Account editedAccount = AccountBuilder.getEssentialAccount("Edited Account");
+    private Account toDeleteAccount = AccountBuilder.getEssentialAccount("TO DELETE");
 
     @BeforeMethod(description = "Login and switch to Accounts tab", alwaysRun = true)
     public void setUpTest(){

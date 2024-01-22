@@ -11,10 +11,10 @@ import static com.codeborne.selenide.Selenide.*;
 @Log4j2
 public class ContactsPage {
 
-    protected SelenideElement newContactButton = $x("//button[text()='New']");
-    protected SelenideElement editButton = $x("//a[@title='Edit']");
-    protected SelenideElement deleteButton = $x("//a[@title='Delete']");
-    protected SelenideElement confirmDeleteButton = $x("//button[@title='Delete']");
+    private SelenideElement newContactButton = $x("//button[text()='New']");
+    private SelenideElement editButton = $x("//a[@title='Edit']");
+    private SelenideElement deleteButton = $x("//a[@title='Delete']");
+    private SelenideElement confirmDeleteButton = $x("//button[@title='Delete']");
 
     @Step("Click New Contact button")
     public void clickNewContactButton(){

@@ -31,13 +31,13 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 @Log4j2
 public class BaseTest {
 
-    User validUser = UserBuilder.getValidUser();
-    User badUser = UserBuilder.getIncorrectUser();
+    protected User validUser = UserBuilder.getValidUser();
+    protected User badUser = UserBuilder.getIncorrectUser();
 
-    LoginPageSteps loginPageSteps = new LoginPageSteps();
-    NavigationSteps navigationSteps = new NavigationSteps();
-    AccountPageSteps accountPageSteps = new AccountPageSteps();
-    ContactPageSteps contactPageSteps = new ContactPageSteps();
+    protected LoginPageSteps loginPageSteps = new LoginPageSteps();
+    protected NavigationSteps navigationSteps = new NavigationSteps();
+    protected AccountPageSteps accountPageSteps = new AccountPageSteps();
+    protected ContactPageSteps contactPageSteps = new ContactPageSteps();
 
     @Attachment
     @Step("Attach Properties to report")
