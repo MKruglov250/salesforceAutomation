@@ -42,7 +42,7 @@ public class ContactsPage {
     @Step("Click Actions Button")
     public void clickActionsButton(Contact contact){
         $x(String.format("//a[@title='%s']/ancestor::tr//button[@aria-expanded='false']",
-                contact.getFirstName() + " " + contact.getLastName())).click();
+                contact.getFirstName() + " " + contact.getLastName())).scrollIntoView(true).click();
     }
 
     @Step("Click Edit button")
