@@ -71,7 +71,7 @@ public class BaseTest {
 
         log.info("Starting configuring web driver");
         getFileBytes("config.properties");
-        Configuration.baseUrl = PropertyReader.getProperty("LoginUrl");
+        Configuration.baseUrl = PropertyReader.getLoginUrl();
         Configuration.browser = Optional.ofNullable(System.getProperty("browser"))
                 .orElse(PropertyReader.getBrowserProperty());
         log.info("Set browser to: " + System.getProperty("browser"));
