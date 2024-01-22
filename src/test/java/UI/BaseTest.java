@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.Duration;
+import java.util.Optional;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
@@ -67,7 +68,8 @@ public class BaseTest {
         log.info("Starting configuring web driver");
         getFileBytes("config.properties");
         Configuration.baseUrl = PropertyReader.getProperty("Baseurl");
-        Configuration.browser = PropertyReader.getBrowserProperty();
+        Configuration.browser = Optional.ofNullable(System.getProperty("browser"))
+                .orElse(PropertyReader.getBrowserProperty());
         Configuration.headless = Boolean.getBoolean(PropertyReader.getProperty("Headless"));
         open(".");
         Configuration.screenshots = true;
