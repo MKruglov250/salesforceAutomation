@@ -70,8 +70,11 @@ public class BaseTest {
         Configuration.baseUrl = PropertyReader.getProperty("Baseurl");
         Configuration.browser = Optional.ofNullable(System.getProperty("browser"))
                 .orElse(PropertyReader.getBrowserProperty());
+        log.info("Set browser to: " + System.getProperty("browser"));
         Configuration.headless = Boolean.getBoolean(PropertyReader.getProperty("Headless"));
+        log.info("Opening WebDriver");
         open(".");
+        log.info("WebDriver Opened");
         Configuration.screenshots = true;
 
         getWebDriver().manage().window().maximize();
