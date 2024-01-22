@@ -6,13 +6,23 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
+import java.io.FileNotFoundException;
+
 import static io.restassured.RestAssured.given;
 
 public class ApiUtils {
 
-    private static ApiUser user = ApiUserBuilder.getApiUser();
+    private static ApiUser user;
 
-     public static String getToken(){
+    static {
+        try {
+            user = ApiUserBuilder.getApiUser();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String getToken(){
         String endpoint = "https://login.salesforce.com/services/oauth2/token";
         RequestSpecification requestSpecification = given().contentType("multipart/form-data")
                 .multiPart("username",user.getUsername())

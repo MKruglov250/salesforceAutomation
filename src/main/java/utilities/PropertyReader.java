@@ -26,6 +26,15 @@ public abstract class PropertyReader {
         return properties.getProperty(key);
     }
 
+    public static String getSecureProperty(String propertyName) throws FileNotFoundException {
+        String systemProperty = System.getProperty(propertyName);
+        if (systemProperty != null) {
+            return systemProperty;
+        }
+        else return getProperty(propertyName);
+    }
+
+
     @Step("Get browser to perform test")
     public static String getBrowserProperty( ) throws FileNotFoundException {
         return getProperty("Browser");
@@ -35,5 +44,31 @@ public abstract class PropertyReader {
     public static int getTimeoutProperty( ) throws FileNotFoundException {
         return Integer.parseInt(getProperty("Timeout"));
     }
+
+    public static String getLogin() throws FileNotFoundException {
+        return getSecureProperty("login");
+    }
+
+    public static String getPassword() throws FileNotFoundException {
+        return getSecureProperty("password");
+    }
+
+    public static String getVerificationCode() throws FileNotFoundException {
+        return getSecureProperty("verificationCode");
+    }
+
+    public static String getGrantType() throws FileNotFoundException {
+        return getSecureProperty("grant_type");
+    }
+
+    public static String getClientId() throws FileNotFoundException {
+        return getSecureProperty("client_id");
+    }
+
+    public static String getClientSecret() throws FileNotFoundException {
+        return getSecureProperty("client_secret");
+    }
+
+
 
 }

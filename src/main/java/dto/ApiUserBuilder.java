@@ -1,16 +1,18 @@
 package dto;
 
-import utilities.LoginUtils;
+import utilities.PropertyReader;
+
+import java.io.FileNotFoundException;
 
 public class ApiUserBuilder {
 
-    public static ApiUser getApiUser(){
+    public static ApiUser getApiUser() throws FileNotFoundException {
         return new ApiUser.ApiUserBuilder()
-                .username(LoginUtils.getLogin())
-                .password(LoginUtils.getPassword()+LoginUtils.getVerificationCode())
-                .grant_type(LoginUtils.getGrantType())
-                .client_id(LoginUtils.getClientId())
-                .client_secret(LoginUtils.getClientSecret())
+                .username(PropertyReader.getLogin())
+                .password(PropertyReader.getPassword()+PropertyReader.getVerificationCode())
+                .grant_type(PropertyReader.getGrantType())
+                .client_id(PropertyReader.getClientId())
+                .client_secret(PropertyReader.getClientSecret())
                 .build();
     }
 }

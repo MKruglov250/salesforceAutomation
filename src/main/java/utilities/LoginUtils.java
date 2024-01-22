@@ -34,24 +34,4 @@ public class LoginUtils {
         return ((JSONObject) obj).get("password").toString();
     }
 
-    @Step("Get Verification Code from local Credentials storage")
-    public static String getVerificationCode(){
-        return ((JSONObject) obj).get("verificationCode").toString();
-    }
-
-    @Step("Get grant_type from local Credentials storage")
-    public static String getGrantType(){
-        return ((JSONObject) obj).get("grant_type").toString();
-    }
-
-    @Step("Get client_id from local Credentials storage")
-    public static String getClientId(){
-        return ((JSONObject) obj).get("client_id").toString();
-    }
-
-    @Step("Get client_secret from local Credentials storage")
-    public static String getClientSecret(){
-        return ((JSONObject) obj).get("client_secret").toString();
-    }
-
 }
