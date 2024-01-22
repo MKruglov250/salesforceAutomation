@@ -5,6 +5,7 @@ import dto.ApiUserBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import utilities.PropertyReader;
 
 import java.io.FileNotFoundException;
 
@@ -22,8 +23,8 @@ public class ApiUtils {
         }
     }
 
-    public static String getToken(){
-        String endpoint = "https://login.salesforce.com/services/oauth2/token";
+    public static String getToken() throws FileNotFoundException {
+        String endpoint = PropertyReader.getBaseUrl() + "services/oauth2/token";
         RequestSpecification requestSpecification = given().contentType("multipart/form-data")
                 .multiPart("username",user.getUsername())
                 .multiPart("password",user.getPassword())

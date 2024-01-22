@@ -17,7 +17,7 @@ pipeline {
                 git branch: "${BRANCH}", url: 'https://github.com/MKruglov250/salesforceAutomation.git'
 
                 // To run Maven on a Windows agent, use
-                bat "mvn clean test -Dmaven.test.failure.ignore=true -Dbrowser=$BROWSER -Dbaseurl=$BASEURL -Dlogin=$LOGIN -Dpassword=$PASSWORD -Dapiurl=$APIURL -DverificationCode=$VERIFICATIONCODE -Dclient_id=$CLIENT_ID -Dclient_secret=$CLIENT_SECRET -Dgrant_type=$GRANTTYPE"
+                bat "mvn clean test -Dmaven.test.failure.ignore=true -Dbrowser=$BROWSER -DBaseUrl=$BASEURL -Dlogin=$LOGIN -Dpassword=$PASSWORD -DApiUrl=$APIURL -DverificationCode=$VERIFICATIONCODE -Dclient_id=$CLIENT_ID -Dclient_secret=$CLIENT_SECRET -Dgrant_type=$GRANTTYPE"
             }
 
             post {
