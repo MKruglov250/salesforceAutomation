@@ -13,8 +13,8 @@ import java.io.IOException;
 @Log4j2
 public class LoginUtils {
 
-    static JSONParser parser = new JSONParser();
-    static Object obj;
+    private static final JSONParser parser = new JSONParser();
+    private static final Object obj;
 
     static {
         try {

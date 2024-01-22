@@ -10,7 +10,7 @@ import static io.restassured.RestAssured.given;
 
 public class ApiUtils {
 
-    static ApiUser user = ApiUserBuilder.getApiUser();
+    private static ApiUser user = ApiUserBuilder.getApiUser();
 
      public static String getToken(){
         String endpoint = "https://login.salesforce.com/services/oauth2/token";

@@ -15,8 +15,8 @@ import java.util.ArrayList;
 @Log4j2
 public class AccountsApi extends BaseApi {
 
-    static String accountEndpoint = "services/data/v59.0/sobjects/Account/";
-    static Gson gson = new Gson();
+    private static String accountEndpoint = "services/data/v59.0/sobjects/Account/";
+    private static Gson gson = new Gson();
 
     public AccountsApi() throws IOException {
     }

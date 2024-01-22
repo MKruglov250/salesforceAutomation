@@ -15,11 +15,11 @@ import static com.codeborne.selenide.Selenide.$x;
 @Log4j2
 public class CreateNewAccountPage extends SingleAccountPage {
 
-    SelenideElement saveButton = $x("//button[@name='SaveEdit']");
-    SelenideElement cancelButton = $x("//button[text()='Cancel']");
-    SelenideElement errorMessage = $x("//h2[text()='We hit a snag.']");
-    SelenideElement errorIcon = $x("//button[@id='window']");
-    SelenideElement accountInfo = $x("//span[text()='Account Information']");
+    protected SelenideElement saveButton = $x("//button[@name='SaveEdit']");
+    protected SelenideElement cancelButton = $x("//button[text()='Cancel']");
+    protected SelenideElement errorMessage = $x("//h2[text()='We hit a snag.']");
+    protected SelenideElement errorIcon = $x("//button[@id='window']");
+    protected SelenideElement accountInfo = $x("//span[text()='Account Information']");
 
     @Step("Enter only necessary Account Data from Model")
     public void enterNecessaryData(Account account){

@@ -15,8 +15,8 @@ import java.util.ArrayList;
 @Log4j2
 public class ContactsApi extends BaseApi {
 
-    static String contactEndpoint = "services/data/v59.0/sobjects/Contact/";
-    static Gson gson = new Gson();
+    private static String contactEndpoint = "services/data/v59.0/sobjects/Contact/";
+    private static Gson gson = new Gson();
 
     public ContactsApi() throws IOException {
     }

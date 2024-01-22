@@ -13,9 +13,9 @@ import java.io.IOException;
 import static io.restassured.RestAssured.given;
 
 public class BaseApi {
-    Gson gson;
-    public RequestSpecification requestSpecification;
-    static String token = ApiUtils.getToken();
+    private Gson gson;
+    private RequestSpecification requestSpecification;
+    private static String token = ApiUtils.getToken();
 
 
     public BaseApi() throws IOException {
