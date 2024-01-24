@@ -35,7 +35,7 @@ Same tests for contacts.
    - Client_ID (from Connected App)
    - Client_Secret (from Connected App)
 4. Activate Salesforce API using guide: https://help.salesforce.com/s/articleView?id=release-notes.rn_security_username-password_flow_blocked_by_default.htm&release=244&type=5
-5. Login to Salesforce, go to Services > Cases and delete all existing cases (default cases stop system from cleanup). 
+5. Login to Salesforce, go to Services > Cases and delete all existing cases (default cases prevent system from cleanup). 
 
 ### Running Locally
 1. Checkout project from Git
