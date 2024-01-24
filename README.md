@@ -6,7 +6,7 @@ Tests checklist:
 1. Creating account with all data fields filled;
 2. Creating account with necessary fields filled;
 3. Creating account with empty data fields (error checks);
-4. Editing account;
+4. Editing account
 5. Deleting account;
 6. Reading account main fields;
 7. Login with invalid credentials;
