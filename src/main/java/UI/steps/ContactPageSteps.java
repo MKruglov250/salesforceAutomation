@@ -3,7 +3,7 @@ package UI.steps;
 import UI.pages.contacts.CreateNewContactPage;
 import UI.pages.contacts.SingleContactPage;
 import UI.wrappers.Input;
-import dto.ContactModel;
+import dto.Contact;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import UI.pages.contacts.ContactsPage;
@@ -12,12 +12,12 @@ import org.testng.Assert;
 @Log4j2
 public class ContactPageSteps {
 
-    private ContactsPage contactsPage = new ContactsPage();
-    private CreateNewContactPage createNewContactPage = new CreateNewContactPage();
-    private SingleContactPage singleContactPage = new SingleContactPage();
+    private final ContactsPage contactsPage = new ContactsPage();
+    private final CreateNewContactPage createNewContactPage = new CreateNewContactPage();
+    private final SingleContactPage singleContactPage = new SingleContactPage();
 
     @Step("Create New Complete Contact")
-    public void createCompleteContact(ContactModel contact){
+    public void createCompleteContact(Contact contact){
         log.info("Creating Contact with complete data from model: " + contact.getLastName());
         contactsPage.clickNewContactButton();
         createNewContactPage.enterCompleteData(contact);
@@ -25,7 +25,7 @@ public class ContactPageSteps {
     }
 
     @Step("Create New Necessary Contact")
-    public void createEssentialContact(ContactModel contact){
+    public void createEssentialContact(Contact contact){
         log.info("Creating Contact with only essential fields from model: " + contact.getLastName());
         contactsPage.clickNewContactButton();
         createNewContactPage.enterNecessaryData(contact);
@@ -46,7 +46,7 @@ public class ContactPageSteps {
     }
 
     @Step("Read Account")
-    public void readContact(ContactModel contact){
+    public void readContact(Contact contact){
         String fullname = String.format("%s %s", contact.getFirstName(),
                 contact.getLastName());
         log.info("Openning contact: " + fullname);
@@ -54,7 +54,7 @@ public class ContactPageSteps {
     }
 
     @Step("Check Contact Exists")
-    public boolean checkContactExists(ContactModel contact){
+    public boolean checkContactExists(Contact contact){
         String fullname = String.format("%s %s", contact.getFirstName(),
                 contact.getLastName());
         log.info("Checking Contact exists: " + fullname);
@@ -62,7 +62,7 @@ public class ContactPageSteps {
     }
 
     @Step("Check All contact Fields")
-    public void checkContactFields(ContactModel contact){
+    public void checkContactFields(Contact contact){
         String fullname = String.format("%s %s %s", contact.getSalutation(), contact.getFirstName(),
                 contact.getLastName());
         log.info("Checking data fields of contact: " + fullname);
@@ -74,7 +74,7 @@ public class ContactPageSteps {
     }
 
     @Step("Check Title Field")
-    public void checkFullnameField(ContactModel contact){
+    public void checkFullnameField(Contact contact){
         String fullname = String.format("%s %s %s", contact.getSalutation(), contact.getFirstName(),
                 contact.getLastName());
         log.info("Checking Fullname field for contact: " + fullname);
@@ -82,7 +82,7 @@ public class ContactPageSteps {
     }
 
     @Step("Check Title Field")
-    public void checkShortFullname(ContactModel contact){
+    public void checkShortFullname(Contact contact){
         String fullname = String.format("%s %s",
                 contact.getFirstName(), contact.getLastName());
         log.info("Checking Fullname field for contact: " + fullname);
@@ -103,7 +103,7 @@ public class ContactPageSteps {
     }
 
     @Step("Edit existing account")
-    public void editExistingContact(ContactModel baseContact, ContactModel editedContact){
+    public void editExistingContact(Contact baseContact, Contact editedContact){
         String fullname = String.format("%s %s", baseContact.getFirstName(),
                 baseContact.getLastName());
         log.info("Editing Account: " + fullname);
@@ -114,7 +114,7 @@ public class ContactPageSteps {
     }
 
     @Step("Delete existing account")
-    public void deleteExistingContact(ContactModel contact){
+    public void deleteExistingContact(Contact contact){
         String fullname = String.format("%s %s %s", contact.getSalutation(), contact.getFirstName(),
                 contact.getLastName());
         log.info("Deleting Account: " + fullname);

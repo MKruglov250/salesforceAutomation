@@ -1,7 +1,7 @@
 package UI.pages.accounts;
 
 import com.codeborne.selenide.SelenideElement;
-import dto.AccountModel;
+import dto.Account;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 
@@ -11,10 +11,10 @@ import static com.codeborne.selenide.Selenide.*;
 @Log4j2
 public class AccountsPage extends CreateNewAccountPage{
 
-    SelenideElement newAccountButton = $x("//div[@title='New']/parent::a");
-    SelenideElement editButton = $x("//a[@title='Edit']");
-    SelenideElement deleteButton = $x("//a[@title='Delete']");
-    SelenideElement confirmDeleteButton = $x("//button[@title='Delete']");
+    private SelenideElement newAccountButton = $x("//div[@title='New']/parent::a");
+    private SelenideElement editButton = $x("//a[@title='Edit']");
+    private SelenideElement deleteButton = $x("//a[@title='Delete']");
+    private SelenideElement confirmDeleteButton = $x("//button[@title='Delete']");
 
     @Step("Click New Account button")
     public void clickNewAccountButton(){
@@ -40,7 +40,7 @@ public class AccountsPage extends CreateNewAccountPage{
 
 
     @Step("Click Edit button")
-    public void clickEditButton(AccountModel account){
+    public void clickEditButton(Account account){
         log.info("Clicking Edit button for account: " + account.getAccountName());
         $x(String.format("//a[text()='%s']/ancestor::tr//a[@role='button']/ancestor::span",
                 account.getAccountName())).click();
@@ -48,7 +48,7 @@ public class AccountsPage extends CreateNewAccountPage{
     }
 
     @Step("Click Delete button")
-    public void clickDeleteButton(AccountModel account){
+    public void clickDeleteButton(Account account){
         log.info("Clicking Delete button for account: " + account.getAccountName());
         $x(String.format("//a[text()='%s']/ancestor::tr//a[@role='button']/ancestor::span",
                 account.getAccountName())).click();

@@ -4,7 +4,7 @@ import UI.wrappers.Dropdown;
 import UI.wrappers.Input;
 import UI.wrappers.InputWithSuggestion;
 import com.codeborne.selenide.SelenideElement;
-import dto.ContactModel;
+import dto.Contact;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 
@@ -14,59 +14,59 @@ import static com.codeborne.selenide.Selenide.$x;
 @Log4j2
 public class CreateNewContactPage {
 
-    SelenideElement saveButton = $x("//button[@name='SaveEdit']");
-    SelenideElement cancelButton = $x("//button[text()='Cancel']");
-    SelenideElement errorMessage = $x("//h2[text()='We hit a snag.']");
-    SelenideElement errorIcon = $x("//button[@id='window']");
-    SelenideElement contactInfo = $x("//span[text()='Contact Information']");
+    private SelenideElement saveButton = $x("//button[@name='SaveEdit']");
+    private SelenideElement cancelButton = $x("//button[text()='Cancel']");
+    private SelenideElement errorMessage = $x("//h2[text()='We hit a snag.']");
+    private SelenideElement errorIcon = $x("//button[@id='window']");
+    private SelenideElement contactInfo = $x("//span[text()='Contact Information']");
 
 
     @Step("Enter only necessary Contact Data from Model")
-    public void enterNecessaryData(ContactModel contactModel){
+    public void enterNecessaryData(Contact contact){
         contactInfo.shouldBe(visible);
         log.info("Entering model data to obligatory fields");
-        new Input("Last Name").write(contactModel.getLastName());
-        new Input("First Name").write(contactModel.getFirstName());
+        new Input("Last Name").write(contact.getLastName());
+        new Input("First Name").write(contact.getFirstName());
     }
 
     @Step("Enter full Contact Data from Model")
-    public void enterCompleteData(ContactModel contactModel){
+    public void enterCompleteData(Contact contact){
         contactInfo.shouldBe(visible);
         log.info("Entering model data to all existing fields");
-        new Dropdown("Salutation").select(contactModel.getSalutation());
-        new Input("First Name").write(contactModel.getFirstName());
+        new Dropdown("Salutation").select(contact.getSalutation());
+        new Input("First Name").write(contact.getFirstName());
         new InputWithSuggestion("Account Name").inputSuggestion("John Doe");
         //new InputWithSuggestion("Parent Account").inputSuggestion(accountModel.getParentAccount()); - can't beat it...
-        new Input("Last Name").write(contactModel.getLastName());
-        new Input("Phone").write(contactModel.getPhone());
-        new Input("Home Phone").write(contactModel.getHomePhone());
-        new Input("Title").write(contactModel.getTitle());
-        new Input("Department").write(contactModel.getDepartment());
-        new Input("Birthdate").write(contactModel.getBirthdate());
-        new Dropdown("Lead Source").select(contactModel.getLeadSource());
-        new Input("Mobile").write(contactModel.getMobile());
-        new Input("Other Phone").write(contactModel.getOtherPhone());
-        new Input("Fax").write(contactModel.getFax());
-        new Input("Email").write(contactModel.getEmail());
-        new Input("Assistant").write(contactModel.getAssistant());
-        new Input("Asst. Phone").write(contactModel.getAssistantPhone());
+        new Input("Last Name").write(contact.getLastName());
+        new Input("Phone").write(contact.getPhone());
+        new Input("Home Phone").write(contact.getHomePhone());
+        new Input("Title").write(contact.getTitle());
+        new Input("Department").write(contact.getDepartment());
+        new Input("Birthdate").write(contact.getBirthdate());
+        new Dropdown("Lead Source").select(contact.getLeadSource());
+        new Input("Mobile").write(contact.getMobile());
+        new Input("Other Phone").write(contact.getOtherPhone());
+        new Input("Fax").write(contact.getFax());
+        new Input("Email").write(contact.getEmail());
+        new Input("Assistant").write(contact.getAssistant());
+        new Input("Asst. Phone").write(contact.getAssistantPhone());
 
-        new Input("Mailing Street").write(contactModel.getMailingStreet());
-        new Input("Mailing Zip/Postal Code").write(contactModel.getMailingZipCode());
-        new Input("Mailing City").write(contactModel.getMailingCity());
-        new Input("Mailing State/Province").write(contactModel.getMailingState());
-        new Input("Mailing Country").write(contactModel.getMailingCountry());
+        new Input("Mailing Street").write(contact.getMailingStreet());
+        new Input("Mailing Zip/Postal Code").write(contact.getMailingZipCode());
+        new Input("Mailing City").write(contact.getMailingCity());
+        new Input("Mailing State/Province").write(contact.getMailingState());
+        new Input("Mailing Country").write(contact.getMailingCountry());
 
-        new Input("Other Street").write(contactModel.getOtherStreet());
-        new Input("Other Zip/Postal Code").write(contactModel.getOtherZipCode());
-        new Input("Other City").write(contactModel.getOtherCity());
-        new Input("Other State/Province").write(contactModel.getOtherState());
-        new Input("Other Country").write(contactModel.getOtherCountry());
+        new Input("Other Street").write(contact.getOtherStreet());
+        new Input("Other Zip/Postal Code").write(contact.getOtherZipCode());
+        new Input("Other City").write(contact.getOtherCity());
+        new Input("Other State/Province").write(contact.getOtherState());
+        new Input("Other Country").write(contact.getOtherCountry());
 
-        new Dropdown("Level").select(contactModel.getLevel());
-        new Input("Languages").write(contactModel.getLanguages());
+        new Dropdown("Level").select(contact.getLevel());
+        new Input("Languages").write(contact.getLanguages());
 
-        new Input("Description").write(contactModel.getDescription());
+        new Input("Description").write(contact.getDescription());
     }
 
     @Step("Click Save button")

@@ -1,9 +1,10 @@
 package API;
 
 import API.client.AccountsApi;
+import API.dto.AccountsList;
 import com.google.gson.Gson;
-import dto.AccountModel;
-import dto.AccountModelBuilder;
+import dto.Account;
+import dto.AccountBuilder;
 import io.restassured.response.Response;
 import lombok.extern.log4j.Log4j2;
 import org.json.simple.parser.ParseException;
@@ -15,12 +16,12 @@ import java.io.IOException;
 @Log4j2
 public class AccountsApiTest {
 
-    Gson gson = new Gson();
-    AccountsApi accountsApi = new AccountsApi();
-    AccountModel account = AccountModelBuilder.getApiAccount();
-    AccountModel editedAccount = AccountModelBuilder.getEditedAccount();
-    AccountModel emptyAccount = AccountModelBuilder.getEmptyAccount();
-    static String newAccountId;
+    private Gson gson = new Gson();
+    private AccountsApi accountsApi = new AccountsApi();
+    private Account account = AccountBuilder.getApiAccount();
+    private Account editedAccount = AccountBuilder.getEssentialAccount("Edited Account");
+    private Account emptyAccount = AccountBuilder.getEmptyAccount();
+    private static String newAccountId;
 
     public AccountsApiTest() throws IOException, ParseException {
     }
@@ -49,7 +50,7 @@ public class AccountsApiTest {
     public void readAccountTest(){
         log.info("Test: read existing account");
         Response response = accountsApi.getAccount(newAccountId);
-        Assert.assertEquals(gson.fromJson(response.body().asString(), AccountModel.class),
+        Assert.assertEquals(gson.fromJson(response.body().asString(), Account.class),
                 account);
     }
 
@@ -65,9 +66,8 @@ public class AccountsApiTest {
     @Test(description = "Get list of accounts", groups = "Smoke", priority = 2)
     public void getAccountsListTest(){
         log.info("Test: get list of existing accounts");
-        Response response = accountsApi.getAccountsList();
-        String recentAccount = gson.toJson(response.body().jsonPath()
-                .getList("recentItems").get(0));
+        AccountsList accountsList = accountsApi.getAccountsList();
+        String recentAccount = accountsList.toString();
         Assert.assertTrue(recentAccount.contains("Edited Account"));
     }
 

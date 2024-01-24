@@ -1,27 +1,37 @@
 package UI;
 
 import com.codeborne.selenide.Selenide;
-import dto.AccountModel;
-import dto.AccountModelBuilder;
+import dto.Account;
+import dto.AccountBuilder;
 import lombok.extern.log4j.Log4j2;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+
+import java.io.FileNotFoundException;
 
 @Log4j2
 public class AccountsTest extends BaseTest {
 
-    AccountModel completeAccount = AccountModelBuilder.getFullAccount();
-    AccountModel essentialAccount = AccountModelBuilder.getEssentialAccount();
-    AccountModel editedAccount = AccountModelBuilder.getEditedAccount();
+    private Account completeAccount = AccountBuilder.getFullAccount();
+    private Account essentialAccount = AccountBuilder.getEssentialAccount();
+    private Account toEditAccount = AccountBuilder.getEssentialAccount("NOT YET EDITED");
+    private Account editedAccount = AccountBuilder.getEssentialAccount("Edited Account");
+    private Account toDeleteAccount = AccountBuilder.getEssentialAccount("TO DELETE");
+
+    public AccountsTest() throws FileNotFoundException {
+    }
 
     @BeforeMethod(description = "Login and switch to Accounts tab", alwaysRun = true)
-    public void setUp(){
+    public void setUpTest(){
         log.info("Logging in and opening Accounts tab");
         loginPageSteps.loginToSite(validUser);
         navigationSteps.switchToServicesScreen();
         navigationSteps.switchToAccountsTab();
+    }
+
+    @AfterMethod
+    public void logout(){
+        loginPageSteps.logout();
     }
 
     @Test(description = "Check Complete Account creation", groups = "Smoke")
@@ -62,31 +72,16 @@ public class AccountsTest extends BaseTest {
     @Test(description = "Check Edit Account", groups = "Regression", priority = 1)
     public void checkEditAccount(){
         log.info("Test: edit existing account title");
-        accountPageSteps.editExistingAccount(essentialAccount,editedAccount.getAccountName());
+        accountPageSteps.editExistingAccount(toEditAccount,editedAccount.getAccountName());
         Assert.assertTrue(accountPageSteps.checkAccountExists(editedAccount));
     }
-    
-    @Test(description = "Check Delete Complete Account", groups = "Regression",
-            priority = 2)
-    public void checkDeleteCompleteAccount(){
-        log.info("Test: delete complete account");
-        accountPageSteps.deleteExistingAccount(completeAccount);
-        Selenide.refresh();
-        Assert.assertFalse(accountPageSteps.checkAccountExists(completeAccount));
-    }
 
-    @Test(description = "Check Delete Edited Account", groups = "Regression",
-            priority = 2)
-    public void checkDeleteEditedAccount(){
-        log.info("Test: delete edited account");
-        accountPageSteps.deleteExistingAccount(editedAccount);
+    @Test(description = "Check Account Deletion", groups = "Regression", priority = 2)
+    public void checkDeleteAccount(){
+        log.info("Test: delete existing test account");
+        accountPageSteps.deleteExistingAccount(toDeleteAccount);
         Selenide.refresh();
-        Assert.assertFalse(accountPageSteps.checkAccountExists(editedAccount));
-    }
-
-    @AfterMethod
-    public void logout(){
-        loginPageSteps.logout();
+        Assert.assertFalse(accountPageSteps.checkAccountExists(toDeleteAccount));
     }
 
 

@@ -9,12 +9,12 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.IOException;
 
-
+// Fairly good JSON parser. Not used after refactoring. Keeping for future
 @Log4j2
 public class LoginUtils {
 
-    static JSONParser parser = new JSONParser();
-    static Object obj;
+    private static JSONParser parser = new JSONParser();
+    private static Object obj;
 
     static {
         try {
@@ -32,26 +32,6 @@ public class LoginUtils {
     @Step("Get Password from local Credentials storage")
     public static String getPassword(){
         return ((JSONObject) obj).get("password").toString();
-    }
-
-    @Step("Get Verification Code from local Credentials storage")
-    public static String getVerificationCode(){
-        return ((JSONObject) obj).get("verificationCode").toString();
-    }
-
-    @Step("Get grant_type from local Credentials storage")
-    public static String getGrantType(){
-        return ((JSONObject) obj).get("grant_type").toString();
-    }
-
-    @Step("Get client_id from local Credentials storage")
-    public static String getClientId(){
-        return ((JSONObject) obj).get("client_id").toString();
-    }
-
-    @Step("Get client_secret from local Credentials storage")
-    public static String getClientSecret(){
-        return ((JSONObject) obj).get("client_secret").toString();
     }
 
 }

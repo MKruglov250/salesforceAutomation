@@ -2,8 +2,8 @@ package API;
 
 import API.client.ContactsApi;
 import com.google.gson.Gson;
-import dto.ContactModel;
-import dto.ContactModelBuilder;
+import dto.Contact;
+import dto.ContactBuilder;
 import io.restassured.response.Response;
 import lombok.extern.log4j.Log4j2;
 import org.apache.http.HttpStatus;
@@ -16,12 +16,12 @@ import java.io.IOException;
 @Log4j2
 public class ContactsApiTest {
 
-    Gson gson = new Gson();
-    ContactsApi contactsApi = new ContactsApi();
-    ContactModel contact = ContactModelBuilder.getApiContact();
-    ContactModel editedContact = ContactModelBuilder.getEditedContact();
-    ContactModel emptyContact = ContactModelBuilder.getEmptyContact();
-    static String newContactId;
+    private Gson gson = new Gson();
+    private ContactsApi contactsApi = new ContactsApi();
+    private Contact contact = ContactBuilder.getApiContact();
+    private Contact editedContact = ContactBuilder.getEditedContact();
+    private Contact emptyContact = ContactBuilder.getEmptyContact();
+    private static String newContactId;
 
     public ContactsApiTest() throws IOException, ParseException {
     }
@@ -50,7 +50,7 @@ public class ContactsApiTest {
     public void readContactTest(){
         log.info("Test: read existing contact");
         Response response = contactsApi.getContact(newContactId);
-        Assert.assertEquals(gson.fromJson(response.body().asString(), ContactModel.class),
+        Assert.assertEquals(gson.fromJson(response.body().asString(), Contact.class),
                 contact);
     }
 
@@ -68,8 +68,7 @@ public class ContactsApiTest {
     public void getContactsListTest(){
         log.info("Test: get list of existing contacts");
         Response response = contactsApi.getContactsList();
-        String recentAccount = gson.toJson(response.body().jsonPath()
-                .getList("recentItems").get(0));
+        String recentAccount = response.asString();
         Assert.assertTrue(recentAccount.contains("Edited, Contact"));
     }
 

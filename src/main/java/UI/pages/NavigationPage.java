@@ -12,7 +12,6 @@ public class NavigationPage {
     protected SelenideElement serviceButton = $x("//a[@data-label='Service']/parent::*");
     protected SelenideElement accountsTab = $x("//a[@title='Accounts']/parent::*");
     protected SelenideElement contactsTab = $x("//a[@title='Contacts']/parent::*");
-    protected SelenideElement casesTab = $x("//a[@title='Cases']/parent::*");
 
     public void clickServicesMenuButton(){
         log.debug("Pressing Services Menu Button");
@@ -32,11 +31,6 @@ public class NavigationPage {
     public void switchToContactsTab(){
         log.debug("Switcing to Contacts tab");
         contactsTab.click();
-    }
-
-    public void switchToCasesTab(){
-        log.debug("Switcing to Accounts tab");
-        casesTab.click();
     }
 
 }

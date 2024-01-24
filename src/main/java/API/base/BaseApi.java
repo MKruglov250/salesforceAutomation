@@ -8,19 +8,28 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import utilities.PropertyReader;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import static io.restassured.RestAssured.given;
 
 public class BaseApi {
-    Gson gson;
-    public RequestSpecification requestSpecification;
-    static String token = ApiUtils.getToken();
+    private Gson gson;
+    private RequestSpecification requestSpecification;
+    private static String token;
+
+    static {
+        try {
+            token = ApiUtils.getToken();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
     public BaseApi() throws IOException {
         gson = new GsonBuilder().create();
-        RestAssured.baseURI = PropertyReader.getProperty("ApiUrl");
+        RestAssured.baseURI = PropertyReader.getApiUrl();
         requestSpecification = given().contentType(ContentType.JSON)
                 .header("ContentType","application/json")
                 .header("Authorization", "Bearer " + token)

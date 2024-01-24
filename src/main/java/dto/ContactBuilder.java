@@ -8,10 +8,10 @@ import utilities.ContactUtils;
 
 import java.io.IOException;
 
-public class ContactModelBuilder {
+public class ContactBuilder {
 
-    public static ContactModel getFullAccount() {
-        return new ContactModel.ContactModelBuilder()
+    public static Contact getFullAccount() {
+        return new Contact.ContactBuilder()
                 .salutation(ContactUtils.getAttribute("salutation"))
                 .firstName(ContactUtils.getAttribute("firstName"))
                 .lastName(ContactUtils.getAttribute("lastName"))
@@ -46,30 +46,38 @@ public class ContactModelBuilder {
     }
 
 
-    public static ContactModel getEssentialContact(){
+    public static Contact getEssentialContact(){
         Faker faker = new Faker();
 
-        return new ContactModel.ContactModelBuilder()
+        return new Contact.ContactBuilder()
                 .lastName(faker.name().lastName())
                 .firstName(faker.name().firstName())
                 .build();
     }
 
-    public static ContactModel getEditedContact(){
-        return new ContactModel.ContactModelBuilder()
+    public static Contact getEssentialContact(String firstname, String lastname){
+
+        return new Contact.ContactBuilder()
+                .lastName(lastname)
+                .firstName(firstname)
+                .build();
+    }
+
+    public static Contact getEditedContact(){
+        return new Contact.ContactBuilder()
                 .lastName("Edited")
                 .firstName("Contact")
                 .build();
     }
 
-    public static ContactModel getEmptyContact(){
-        return new ContactModel.ContactModelBuilder()
+    public static Contact getEmptyContact(){
+        return new Contact.ContactBuilder()
                 .description("Test Desc")
                 .build();
     }
 
-    public static ContactModel getApiContact() throws IOException, ParseException {
+    public static Contact getApiContact() throws IOException, ParseException {
         Gson gson = new Gson();
-        return gson.fromJson(AccountUtils.parseJson("apiContact.json"),ContactModel.class);
+        return gson.fromJson(AccountUtils.parseJson("apiContact.json"), Contact.class);
     }
 }

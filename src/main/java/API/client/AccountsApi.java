@@ -1,23 +1,26 @@
 package API.client;
 
 import API.base.BaseApi;
+import API.dto.AccountsList;
 import com.google.gson.Gson;
-import dto.AccountModel;
+import dto.Account;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import lombok.extern.log4j.Log4j2;
 import org.apache.http.HttpStatus;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 @Log4j2
 public class AccountsApi extends BaseApi {
 
-    static String accountEndpoint = "services/data/v59.0/sobjects/Account/";
-    static Gson gson = new Gson();
+    private static String accountEndpoint = "services/data/v59.0/sobjects/Account/";
+    private static Gson gson = new Gson();
 
     public AccountsApi() throws IOException {
     }
+
 
     @Step("API: Read Account")
     public Response getAccount(String accountId){
@@ -32,21 +35,21 @@ public class AccountsApi extends BaseApi {
     }
 
     @Step("API: Create Account")
-    public Response createAccount(AccountModel account){
+    public Response createAccount(Account account){
         log.info("Creating account from model: " + account.getAccountName());
         String body = gson.toJson(account);
         return post(accountEndpoint, HttpStatus.SC_CREATED, body);
     }
 
     @Step("API: Create Account")
-    public Response createEmptyAccount(AccountModel account){
+    public Response createEmptyAccount(Account account){
         log.info("Creating account from model: " + account.getAccountName());
         String body = gson.toJson(account);
         return post(accountEndpoint, HttpStatus.SC_BAD_REQUEST, body);
     }
 
     @Step("API: Update Account")
-    public Response updateAccount(String accountId, AccountModel updatedAcc){
+    public Response updateAccount(String accountId, Account updatedAcc){
         log.info(String.format("Updating account %s with new name %s",
                 accountId, updatedAcc.getAccountName()));
         String body = gson.toJson(updatedAcc);
@@ -60,8 +63,17 @@ public class AccountsApi extends BaseApi {
     }
 
     @Step("API: Get Accounts List")
-    public Response getAccountsList(){
-        log.info("Getting list of existing accounts: ");
-        return get(accountEndpoint,HttpStatus.SC_OK);
+    public AccountsList getAccountsList(){
+        log.info("Getting list of existing accounts");
+        Response response = get(accountEndpoint,HttpStatus.SC_OK);
+        return gson.fromJson(response.body().asString(), AccountsList.class);
+    }
+
+    public void deleteRecentAccounts() {
+        ArrayList<Account> accountList = getAccountsList().getAccountList();
+        for (Account account : accountList) {
+            deleteAccount(account.getId());
+        }
+        log.info("All Recent Accounts Deleted");
     }
 }

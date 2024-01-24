@@ -6,8 +6,7 @@ import UI.pages.accounts.AccountsPage;
 import UI.pages.accounts.CreateNewAccountPage;
 
 public class BaseSteps {
-    LoginPage loginPage = new LoginPage();
-    NavigationPage navigationPage = new NavigationPage();
-    AccountsPage accountsPage = new AccountsPage();
-    CreateNewAccountPage createNewAccountPage = new CreateNewAccountPage();
+    protected LoginPage loginPage = new LoginPage();
+    protected NavigationPage navigationPage = new NavigationPage();
+    protected AccountsPage accountsPage = new AccountsPage();
 }

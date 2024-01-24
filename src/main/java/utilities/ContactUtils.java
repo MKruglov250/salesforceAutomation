@@ -13,8 +13,8 @@ import java.io.IOException;
 @Log4j2
 public class ContactUtils {
 
-    static JSONParser parser = new JSONParser();
-    static Object obj;
+    private static JSONParser parser = new JSONParser();
+    private static Object obj;
 
     static {
         try {

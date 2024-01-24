@@ -3,9 +3,8 @@
 <suite name="Parallel API and UI" parallel="tests" thread-count="2">
     <listeners>
         <listener class-name="utilities.RetryListener"/>
-        <listener class-name="utilities.OurListener"/>
     </listeners>
-    <test name="UI and Cucumber">
+    <test name="UI">
         <classes>
             <class name="UI.LoginTest"/>
             <class name="UI.AccountsTest"/>

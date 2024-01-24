@@ -10,11 +10,11 @@ import static com.codeborne.selenide.Selenide.$x;
 @Log4j2
 public class SingleContactPage {
 
-    protected SelenideElement contactFullName = $x("//div[text()='Contact']/parent::h1/descendant::span[1]");
-    protected SelenideElement contactTitle = $x("//p[text()='Title']");
-    protected SelenideElement contactAccountName = $x("//p[text()='Account Name']");
-    protected SelenideElement contactPhone = $x("//p[contains(text(),'Phone (2)')]");
-    protected SelenideElement contactEmail = $x("//p[text()='Email']");
+    private SelenideElement contactFullName = $x("//div[text()='Contact']/parent::h1/descendant::span[1]");
+    private SelenideElement contactTitle = $x("//p[text()='Title']");
+    private SelenideElement contactAccountName = $x("//p[text()='Account Name']");
+    private SelenideElement contactPhone = $x("//p[contains(text(),'Phone (2)')]");
+    private SelenideElement contactEmail = $x("//p[text()='Email']");
 
     @Step("Account Contact Fullname Field Exists")
     public boolean checkContactFullNameExists(){
