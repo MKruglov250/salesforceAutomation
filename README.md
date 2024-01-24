@@ -1,5 +1,5 @@
 # Salesforce Test Automation Framework
-Tests checklist:
+Set of UI and API autotests for Salesforce website.
 
 ### UI
 #### Accounts and contacts
